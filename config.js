@@ -19,9 +19,9 @@ module.exports = {
      * https://www.mongohq.com/signup/
      */
     mongodb: {
-        host: process.env.MONGODB_HOST || 'mongodb://localhost',
-        port: process.env.MONGODB_PORT || '27017',
-        db: process.env.MONGODB_DATABASE || 'usuarios',
+        host: process.env.MONGODB_HOST || '',
+        port: process.env.MONGODB_PORT || '',
+        db: process.env.MONGODB_DATABASE || '',
         username: process.env.MONGODB_USERNAME || '',
         password: process.env.MONGODB_PASSWORD || ''
     }

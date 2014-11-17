@@ -3,7 +3,10 @@ var config = require("../config");
 
 module.exports = {
 
-    'url' : 'mongodb://localhost', // looks like mongodb://<user>:<pass>@mongo.onmodulus.net:27017/Mikha4ot
-    'db' : 'usuarios'
+ host: process.env.MONGODB_HOST || '',
+        port: process.env.MONGODB_PORT || '',
+        db: process.env.MONGODB_DATABASE || '',
+        username: process.env.MONGODB_USERNAME || '',
+        password: process.env.MONGODB_PASSWORD || ''
 
 };
