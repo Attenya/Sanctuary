@@ -21,7 +21,7 @@
     "connect-mongo": "^0.4.1",
     "express-js-layout": "^1.1.0"
   },
-  "enfines": {
+  "engines": {
     "node": "0.8.14",
     "npm": "1.1.65"
   }
