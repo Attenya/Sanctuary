@@ -1,0 +1,14 @@
+extend layout
+block content
+	form(method="POST")
+		p
+			label(for="id") Id:
+			input(type="text", name="id", value=usuario.id)
+		p
+			label(for="mail") Correo:
+			input(type="text", name="mail", value=usuario.mail)
+		p
+			label(for="password") Pass:
+			input(type="text", name="password", value=usuario.password)
+		p
+			input(type="submit", value="Guardar")

@@ -1,0 +1,37 @@
+extend layout
+block content
+	div(class="container centrar")
+		div(class="col-xs-3 col-sm-3")
+			img(src="", class="img-thumbnail imagen2")
+		div(class="col-sx-6 col-sm-6")
+			<br>
+			label(class="col-sm-6 control-label") Fecha de Inscripción
+			div(class="col-sm-6") #{usuario.created_at}
+		div(class="col-sx-6 col-sm-6")
+			<br>
+			label(class="col-sm-6 control-label") Bando
+			div(class="col-sm-6") #{usuario.bando}
+		div(class="col-sx-6 col-sm-6")
+			<br>
+			label(class="col-sm-6 control-label") Rango
+			div(class="col-sm-6") #{usuario.range}
+		div(class="col-sx-6 col-sm-6")
+			<br>
+			label(class="col-sm-6 control-label") Medallas
+			div(class="col-sm-6") #{usuario.range}
+		div(class="col-sx-12 col-sm-12")
+			form(class="form-inline", method="post", role="form")
+				<br>
+				div(class="form-group")
+					label(class="col-sm-6", for="user_id") 
+						| ID:
+					div(class="col-sm-6")
+						input(class="form-control", id="user_id", type="text", value="#{usuario.user_id}", name="user_id")
+				div(class="form-group col-md-offset-1")
+					label(class="col-sm-6", for="user_mail") Correo:
+					div(class="col-sm-6")
+						input(class="form-control", id="user_mail", type="text", value="#{usuario.mail}", name="user_mail")
+				div(class="form-group col-md-offset-1")
+					label(class="col-sm-6", for="user_pass") Pass:
+					div(class="col-sm-6")
+						input(class="form-control", id="user_pass", type="password", value="#{usuario.password}", name="user_pass")

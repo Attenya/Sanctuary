@@ -1,0 +1,32 @@
+<div id="perfil">
+<div class="col-sm-12">
+<h2>Lista de Personajes</h2>
+<table class="table table-hover">
+<thead>
+<tr>
+<th>#</th>
+<th>Nombre</th>
+<th>Activo</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nombre1</td>
+<td>Si/No</td>
+<td>Dañado/Destruido</td>
+<tr>
+<tr class="success">
+td>Nombre1</td>
+<td>Si/No</td>
+<td>Dañado/Destruido</td>
+</tr>
+<tr class="warning">
+td>Nombre1</td>
+<td>Si/No</td>
+<td>Dañado/Destruido</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>

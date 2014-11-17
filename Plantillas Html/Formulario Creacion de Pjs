@@ -1,0 +1,32 @@
+<div class="perfil">
+<button type="button" class="close"><span class="libre" aria-hidden="false">&times;</span><span class="sr-only">Close</span></button>'
+<div class=" col-md-12">
+<form id="formPjNew" method="" role="form" class="form-horizontal">
+<br>
+<div class="form-group">
+<label for="id_pj" class="col-sm-1 control-label">ID:</label>
+<div class="col-sm-2">
+<input type="text" id="id_pj" name="id_pj" class="form-control">
+</div>
+</div>
+<div class="form-group">
+<label for="name_pj" class="col-sm-1 control-label">Nombre: </label>
+<div class="col-sm-2">
+<input type="text" id="name_pj" name="name_pj" class="form-control">
+</div>
+</div>
+<div class="form-group">
+<label for="nivel_pj" class="col-sm-1 control-label">Nivel:</label>
+<div class="col-sm-2">
+<input type="text" id="nivel_pj" name="nivel_pj" class="form-control">
+</div>
+</div>
+<div class="form-group">
+<label for="n_a_pj" class="col-sm-1 control-label">N.A:</label>
+<div class="col-sm-2">
+<input type="text" id="n_a_pj" name="n_a_pj" class="form-control">
+</div>
+</div>
+</form>
+</div>
+</div>

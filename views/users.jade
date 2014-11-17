@@ -1,0 +1,6 @@
+extend layout
+block content
+	if(usuarios)
+		each usuario in usuarios
+			a(href="/user/" + usuario.user_id) #{usuario.user_id}
+			span #{usuario.mail}

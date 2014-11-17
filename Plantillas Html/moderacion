@@ -1,0 +1,6 @@
+<div id="panel_moderacion">
+<h2>Panel de Moderadores</h2>
+<div class="btn btn-primary btn-lg btn-block">Noticias</div>
+<div class="btn btn-primary btn-lg btn-block">Moderar Batallas</div>
+<div class="btn btn-primary btn-lg btn-block">Moderar Ranking</div>
+</div>

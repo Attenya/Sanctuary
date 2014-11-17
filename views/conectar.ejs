@@ -1,0 +1,14 @@
+<div class="container">
+	<form class="form-signin" role="form" method="post">
+		<h2 class="form-signin-heading"> Conéctate:</h2>
+		<input type="text" class="form-control" placeholder="Cuenta" name="user_id" require autofocus>
+		<input type="password" class="form-control" placeholder="Contraseña" name="pass" require>
+		<div class="checkbox">
+			<br>
+			<button class="btn btn-log btn-primary btn-block" type="submit">Conectar</button>
+		</div>
+	</form>
+</div>
+<% if (message.length > 0) { %>
+		<div class="col-md-12 alert alert-danger" role="alert"><%= message %></div>
+	<% } %>

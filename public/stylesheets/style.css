@@ -1,0 +1,494 @@
+ * { 
+ 	margin: 0; 
+ 	padding: 0; 
+ 	box-sizing: 
+ 	border-box; 
+ }
+      
+ body { 
+ 	font: 13px 	Helvetica, Arial; 
+      background: url("/images/fondo_general.png");
+ }
+
+.privado{
+      font-style: italic;
+      color: #00ffba;
+}
+
+.peque{
+      height: 50px;
+}
+
+#panel_administracion{
+      background: rgba(0,0,0,0.5);
+      float: right;
+      position: relative;
+      width: 300px;
+      margin-top: -640px;
+      margin-right: 280px;
+      color: #fff;
+      text-align: center;
+}
+
+#panel_administracion li{
+      width: 280px;
+      margin-left: 10px;
+      margin-top: 10px;
+}
+ .vacio{
+      height: 90px;
+      background: rgba(0,0,0,0.5);
+      width: 100%;
+ }
+
+.cuadro{
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+}
+
+.signup{
+      background: rgba(0,0,0,0.5);
+}
+
+.title{
+      text-align: center;
+}
+
+.imagen{
+      width: 700px;
+     height: 280px !important;
+}
+
+.imagen2{
+      height: 200px !important;
+      width: 200px !important;
+      margin-right: auto;
+      margin-left: auto;
+      margin-top: 10px;
+}
+
+.centrar{
+      margin-left: auto;
+      margin-right: auto;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+}
+
+.navbar{
+      width: 100%;
+      background: #1d0000;
+      padding: 5px;
+      height: 53px;
+
+}
+
+.navbar-logo{
+      width: 150px;
+}
+
+.navbar-menu{
+      width: 80%;
+      margin-left: 200px;
+      font-family: Arial;
+      font-size: 14px;
+      color: #fff;
+      margin-top: 10px;
+}
+
+.navbar-menu li{
+      display:inline-block;
+      margin-left: 10px;
+}
+
+.navbar-user{
+      float:right;
+      display: inline-block;
+      margin-top: -30px;
+
+}
+
+.navbar-menu a{
+color: #9d9d9d;
+text-decoration: none;
+}
+
+.navbar-menu a:hover{
+      color: #fff;
+}
+
+ /*Configuración general del chat*/
+ #chat{
+      margin-left: 5px;
+      width: 529px;
+      margin-top: -10px;
+ }
+
+#mensajes_chat{
+      height: 273px;
+      width: 409px;
+      margin-left: 5px;
+background:rgba(0,0,0,0.5);
+margin-top: 5px !important;
+overflow: auto;
+color: #fff;
+text-align: justify;
+}
+::-webkit-scrollbar {
+background: white;
+height: 12px;
+width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+background: #730302;
+}
+::-webkit-scrollbar-corner {
+background: #730302;
+}
+#mensajes_sistema{
+     height: 273px;
+      width: 529px;
+      background: rgba(0,0,0,0.5);
+      margin-top: 5px !important;
+      margin-left: 5px;
+      overflow: auto;
+      text-align: justify;
+}
+
+  #mensajes_chat, #mensajes_sistema { 
+            list-style-type: none; 
+            margin: 0; 
+            padding: 0; 
+      }
+
+#my_ul li{
+      padding-left:5px;
+      padding-right: 5px;
+}
+
+#conectados{
+      width: 120px;
+      height: 273px;
+      background: rgba(0,0,0,0.5);
+      position: absolute;
+      margin-top: -360px;
+      margin-left: 417px;
+}
+
+#conectados li{
+      list-style-type: none;
+      padding-left: 5px;
+      padding-right: 5px;
+      color: #fff;
+}
+
+#conectados li:hover{
+      text-decoration: underline;
+      cursor: pointer;
+}
+
+.peque{
+      font-size: 10px;
+      font-style: italic;
+      color: #fff;
+}
+/*Se da forma a los botones del chat*/
+
+
+#botones{
+width: 100%;
+background: rgba(0,0,0,0.5);
+}
+
+#botones2{
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+}
+
+#botones ul{
+      width: 100%;
+}
+
+#botones li {
+      display: inline-block;
+      width: 90px;
+      padding: 5px;
+}
+
+#botones button{
+width: 90px;
+padding: 5px;
+}
+
+#enviar{
+      width: 90px;
+      height: 100%;
+      padding: 5px;
+      margin-left: 5px;
+}
+
+#enviar_room{
+      width: 90px;
+      height: 100%;
+      padding: 5px;
+      margin-left: 5px;
+}
+/*Se le da forma al input del texto*/
+      form input { 
+      	border: 0; 
+      	padding: 10px; 
+      	width: 79%; 
+      	margin-left: .5%; 
+            height: 28px;
+            border: 1px solid #000;
+      }
+
+      
+
+      #mensajes_chat, #mensajes_sistema { 
+      	list-style-type: none; 
+      	margin: 0; 
+      	padding: 0; 
+      }
+
+      /*Se colocan los cuadros que corresponden a las Noticias, Batallas y Ranking*/
+
+#noticias{
+position: relative;
+float: right;
+margin-top: -640px;
+margin-right: 80px;
+width: 700px;
+height: 280px;
+background: rgba(0,0,0,0.5);
+
+}
+
+.carousel{
+      margin-left: 10px;
+      margin-top: 10px;
+}
+
+#menu_batallas{
+      width: 330px;
+      height: 311px;
+      background: rgba(0,0,0,0.5);
+      float: right;
+      position: relative;
+      margin-top: -330px;
+      margin-right: 450px;
+
+}
+
+#ranking{
+      width: 330px;
+      height: 311px;
+      background: rgba(0,0,0,0.5);
+      float: right;
+      position: relative;
+      margin-top: -330px;
+      margin-right: 80px;
+
+}
+
+#perfil{
+      background: rgba(0,0,0,0.5);
+      float: right;
+      position: relative;
+      width: 700px;
+      margin-top: -640px;
+      margin-right: 80px;
+      color: #fff;
+}
+
+#perfil2{
+      text-decoration: underline;
+      cursor: pointer;
+}
+
+.divisor{
+      border-bottom: 1px solid #fff;
+}
+
+.libre{
+      position: absolute;
+      color: #fff !important;
+}
+@-moz-document url-prefix() {
+
+body{
+      font-size: 10px !important;
+}
+
+.imagen{
+      width: 455px !important;
+     height: 182px !important;
+}
+
+.navbar{
+      width: 100%;
+      height: 30px;
+      background: #1d0000;
+      border-bottom: 1px solid red;
+      padding: 5px;
+
+}
+
+.navbar-logo{
+      width: 150px;
+}
+
+.navbar-menu{
+      width: 80%;
+      margin-left: 200px;
+      font-family: Arial;
+      font-size: 10px;
+      color: #9d9d9d;
+      margin-top: 10px;
+}
+
+.navbar-menu a:hover{
+color: #fff;
+}
+
+.navbar-menu li{
+      display:inline-block;
+      margin-left: 10px;
+}
+
+.navbar-user{
+      float:right;
+      display: inline-block;
+      margin-top: -28px;
+}
+
+.navbar-menu a{
+color: #9d9d9d;
+}
+ /*Configuración general del chat*/
+ #chat{
+      margin-left: 5px;
+      width: 429px;
+ }
+
+#mensajes_chat{
+      height: 203px;
+      width: 429px;
+      margin-left: 5px;
+background:rgba(0,0,0,0.5);
+margin-top: 5px !important;
+overflow: auto;
+color: #fff;
+}
+
+#mensajes_sistema{
+     height: 190px;
+      width: 429px;
+      background: rgba(0,0,0,0.5);
+      margin-top: 5px !important;
+      margin-left: 5px;
+      overflow: auto;
+}
+
+  #mensajes_chat, #mensajes_sistema { 
+            list-style-type: none; 
+            margin: 0; 
+            padding: 0; 
+      }
+
+
+      #mensajes_chat:nth-child(odd){
+       background: #eee; 
+   }
+/*Se da forma a los botones del chat*/
+
+
+#botones{
+width: 100%;
+background: rgba(0,0,0,0.5);
+}
+
+#botones2{
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+      margin-top: -10px;
+}
+
+#botones ul{
+      width: 100%;
+}
+
+#botones li {
+      display: inline-block;
+      width: 90px;
+      padding: 5px;
+}
+
+#botones button{
+width: 90px;
+padding: 5px;
+}
+
+#enviar{
+      width: 90px;
+      height: 100%;
+      padding: 5px;
+      margin-left: 5px;
+}
+
+#enviar_room{
+      width: 90px;
+      height: 100%;
+      padding: 5px;
+      margin-left: 5px;
+}
+/*Se le da forma al input del texto*/
+      form input { 
+            border: 0; 
+            padding: 10px; 
+            width: 75%; 
+            margin-left: .5%; 
+            height: 28px;
+            border: 1px solid #000;
+      }
+
+      
+
+      #mensajes_chat, #mensajes_sistema { 
+            list-style-type: none; 
+            margin: 0; 
+            padding: 0; 
+      }
+
+#noticias{
+position: relative;
+float: right;
+margin-top: -478px;
+margin-right: 120px;
+width: 500px;
+height: 210px;
+background: rgba(0,0,0,0.5);
+
+}
+
+#menu_batallas{
+      width: 230px;
+      height: 211px;
+      background: rgba(0,0,0,0.5);
+      float: right;
+      position: relative;
+      margin-top: -240px;
+      margin-right: 390px;
+}
+
+#ranking{
+      width: 230px;
+      height: 211px;
+      background: rgba(0,0,0,0.5);
+      float: right;
+      position: relative;
+      margin-top: -240px;
+      margin-right: 120px;
+
+}
+      }
