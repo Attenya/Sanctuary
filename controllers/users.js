@@ -3,7 +3,6 @@ var mongoose        = require('mongoose')
   , db_lnk          = 'mongodb://localhost/usuarios'
   , db              = mongoose.createConnection(db_lnk)
   , helpers			= require('../helpers/users')
-  , async 			= require('async')
   , user 			= ""
   ,Passport = require('passport')
   ,LocalStrategy = require('passport-local').Strategy;
