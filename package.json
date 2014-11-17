@@ -4,7 +4,7 @@
   "private": true,
 
   "dependencies": {
-    "body-parser": "^1.7.0",
+    "body-parser": "1.7.0",
     "cookie-parser": "1.1.0",
     "debug": "~0.7.4",
     "express": "^4.3.2",
@@ -12,14 +12,14 @@
     "morgan": "~1.0.0",
     "socket.io": "1.2.0",
     "static-favicon": "~1.0.0",
-    "express-session": "^1.7.6",
+    "express-session": "1.7.6",
     "ejs": "^1.0.0",
     "bcrypt-nodejs" : "latest",
     "connect-flash" : "~0.1.1",     
     "method-override": "~1.0.0",
     "mongoose": "3.8.3",
-    "connect-mongo": "^0.4.1",
-    "express-js-layout": "^1.1.0"
+    "connect-mongo": "0.4.1",
+    "express-js-layout": "1.1.0"
   },
   "engines": {
     "node": "0.8.14",
