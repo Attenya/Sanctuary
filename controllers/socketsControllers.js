@@ -23,7 +23,8 @@ var socketsControllers = function(app){
 									if(!err){
 										socket.emit('conectados', res);
 									} else {
-										throw err
+										console.log(err);
+										return next();
 									};
 								});
 							} else {
@@ -35,7 +36,8 @@ var socketsControllers = function(app){
 					} else {
 						DB.conectar(socket.usuario, function(err){
 							if(err){
-								throw err;
+								console.log(err);
+										return next();
 							} 
 						});
 						usuarios[socket.usuario] = {usuario: socket.usuario, puerto: socket.id, bando: bando};
@@ -58,7 +60,8 @@ var socketsControllers = function(app){
 							if(!err){
 								io.emit('conectados', res);
 							} else {
-								throw err
+								console.log(err);
+										return next();
 							};
 						});
 
@@ -70,7 +73,8 @@ var socketsControllers = function(app){
 				socket.on('msg', function(usuario, mensaje){
 					DB.general(usuario, mensaje, function(err, res){
 						if(err){
-							throw err;
+							console.log(err);
+										return next();
 						};
 						
 					});
@@ -88,7 +92,8 @@ var socketsControllers = function(app){
 									if(!err){
 										io.emit('conectados', res);
 									} else {
-										throw err
+										console.log(err);
+										return next();
 									};
 								});
 						
