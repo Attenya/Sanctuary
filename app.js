@@ -25,8 +25,7 @@ var uriUtil = require('mongodb-uri');
 var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
                 replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };       
 
-var mongodbUri = 'mongodb://heroku_app31710195:6g1e0bmbe5rhjb0e5k5hj1na3f@ds053190.m
-ongolab.com:53190/heroku_app31710195';
+var mongodbUri = 'mongodb://dbuser:dbpass@host:port/dbname';
 var mongooseUri = uriUtil.formatMongoose(mongodbUri);
 /*Configuración de la Base de Datos*/
 mongoose.connect(mongooseUri, options);
