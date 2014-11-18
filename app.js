@@ -20,15 +20,13 @@ var expressLayouts = require('express-ejs-layouts');
 
 var chat = require('./controllers/socketsControllers');
 var config = require('./config.js')
-var uriUtil = require('mongodb-uri');
+
 
 var uristring = 
   process.env.MONGOLAB_URI || 
   process.env.MONGOHQ_URL || 
-  'mongodb://localhost/';    
+  '';    
 
-var mongodbUri = process.env.MONGOHQ_URL ||mongodb;
-var mongooseUri = uriUtil.formatMongoose(mongodbUri);
 /*Configuración de la Base de Datos*/
 mongoose.connect(uristring, function (err, res) {
   if (err) { 
