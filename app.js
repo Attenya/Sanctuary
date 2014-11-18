@@ -22,8 +22,10 @@ var chat = require('./controllers/socketsControllers');
 var config = require('./config.js')
 
 
-var uristring =  process.env.MONGOHQ_URL || 
-  '';    
+var uristring = 
+  process.env.MONGOLAB_URI || 
+  process.env.MONGOHQ_URL || 
+  'mongodb://localhost/';    
 
 /*Configuración de la Base de Datos*/
 mongoose.connect(uristring, function (err, res) {
@@ -108,6 +110,6 @@ app.use(function(err, req, res, next) {
 */
 
 
-http.listen(config.port, function(){
+http.listen(process.env.PORT || 3000, function(){
     console.log('El servidor funciona en el puerto 3000');
 });
