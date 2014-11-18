@@ -21,7 +21,8 @@
     "connect-mongo": "0.4.1",
     "express-ejs-layouts": "1.1.0",
     "passport": "0.2.1",
-    "passport-local": "1.0.0"
+    "passport-local": "1.0.0",
+    "mongodb-uri" : "0.9.7"
   },
   "engines": {
     "node": "0.10.30",
