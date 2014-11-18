@@ -22,10 +22,8 @@ var chat = require('./controllers/socketsControllers');
 var config = require('./config.js')
 
 
-var uristring = 
-  process.env.MONGOLAB_URI || 
-  process.env.MONGOHQ_URL || 
-  '';    
+var uristring = 'mongodb://heroku_app31710195:6g1e0bmbe5rhjb0e5k5hj1na3f@ds053190.m
+ongolab.com:53190/heroku_app31710195';    
 
 /*Configuración de la Base de Datos*/
 mongoose.connect(uristring, function (err, res) {
