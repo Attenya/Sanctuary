@@ -22,13 +22,21 @@ var chat = require('./controllers/socketsControllers');
 var config = require('./config.js')
 var uriUtil = require('mongodb-uri');
 
-var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
-                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };       
+var uristring = 
+  process.env.MONGOLAB_URI || 
+  process.env.MONGOHQ_URL || 
+  'mongodb://localhost/';    
 
-var mongodbUri = 'mongodb://dbuser:dbpass@host:port/dbname';
+var mongodbUri = process.env.MONGOHQ_URL ||mongodb;
 var mongooseUri = uriUtil.formatMongoose(mongodbUri);
 /*Configuración de la Base de Datos*/
-mongoose.connect(mongooseUri, options);
+mongoose.connect(uristring, function (err, res) {
+  if (err) { 
+    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+    console.log ('Succeeded connected to: ' + uristring);
+  }
+});
 
 
 // view engine setup
