@@ -23,7 +23,7 @@ var config = require('./config.js')
 
 
 var uristring = 
-  process.env.MONGOHQ_URL || 
+  'mongodb://nodejitsu:8c5c5d9c791cb22adf74397c9f181b1d@troup.mongohq.com:10074/nodejitsudb5325375206' || 
   'mongodb://localhost/';    
 
 /*Configuración de la Base de Datos*/

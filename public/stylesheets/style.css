@@ -15,6 +15,12 @@
       color: #00ffba;
 }
 
+.alerta{
+      background: #f2dede;
+      color: #b86542;
+      text-align: center;
+}
+
 .peque{
       height: 50px;
 }
