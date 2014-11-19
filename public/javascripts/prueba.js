@@ -60,7 +60,7 @@ $('#estatico').on('click', ".libre", function(event){
 })
 
 var chatRoom = null;
-var socket = io.connect(window.location.hostname);
+var socket = io.connect();
 var total = 0;
 var perfil = "";
 var tabla = "";
