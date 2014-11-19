@@ -1,10 +1,10 @@
 {
   "name": "El_Santuario",
-  "version": "0.0.1",
+  "version": "0.0.1-5",
   "private": true,
-
+  "subdomain": "El-Santuario-CDZ",
   "dependencies": {
-    "bcrypt-nodejs":"0.0.3",
+    "bcrypt-nodejs": "latest",
     "body-parser": "1.7.0",
     "cookie-parser": "1.1.0",
     "debug": "~0.7.4",
@@ -15,18 +15,20 @@
     "static-favicon": "~1.0.0",
     "express-session": "1.7.6",
     "ejs": "1.0.0",
-    "bcrypt-nodejs" : "latest",
-    "connect-flash" : "~0.1.1",     
+    "connect-flash": "~0.1.1",
     "method-override": "~1.0.0",
     "mongoose": "3.8.3",
     "connect-mongo": "0.4.1",
     "express-ejs-layouts": "1.1.0",
     "passport": "0.2.1",
     "passport-local": "1.0.0",
-    "mongodb-uri" : "0.9.7"
+    "mongodb-uri": "0.9.7"
   },
   "engines": {
-    "node": "0.10.30",
+    "node": "0.10.x",
     "npm": "1.4.21"
+  },
+  "scripts": {
+    "start": "node app"
   }
 }

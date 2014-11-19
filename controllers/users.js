@@ -1,7 +1,9 @@
 // Creación de la Conexión
 var mongoose        = require('mongoose')
-  , db_lnk          = 'mongodb://localhost/usuarios'
-  , db              = mongoose.createConnection(db_lnk)
+  , uristring = 
+  process.env.MONGOHQ_URL || 
+  'mongodb://localhost/usuarios'
+  , db              = mongoose.createConnection(uristring)
   , helpers			= require('../helpers/users')
   , user 			= ""
   ,Passport = require('passport')

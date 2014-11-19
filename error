@@ -1,0 +1,38 @@
+
+err Tue, 18 Nov 2014 22:20:02 GMT Tue, 18 Nov 2014 22:20:02 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at app.js:60:9
+out Tue, 18 Nov 2014 22:20:02 GMT El servidor funciona en el puerto 3000
+err Tue, 18 Nov 2014 22:20:03 GMT Tue, 18 Nov 2014 22:20:03 GMT express-session deprecated undefined resave option; provide resave option at app.js:54:9
+err Tue, 18 Nov 2014 22:20:03 GMT Tue, 18 Nov 2014 22:20:03 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at app.js:54:9
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+err Tue, 18 Nov 2014 22:20:03 GMT 
+out Tue, 18 Nov 2014 22:20:03 GMT El servidor funciona en el puerto 3000
+err Tue, 18 Nov 2014 22:20:03 GMT events.js:72
+throw er; // Unhandled 'error' event
+^
+err Tue, 18 Nov 2014 22:20:03 GMT Error: failed to connect to [localhost:27017]
+at null. (/opt/run/snapshot/package/node_modules/mongoose/node_modules/mongodb/lib/mongodb/connection/server.js:540:74)
+at emit (events.js:106:17)
+at null. (/opt/run/snapshot/package/node_modules/mongoose/node_modules/mongodb/lib/mongodb/connection/connection_pool.js:140:15)
+at emit (events.js:98:17)
+at Socket. (/opt/run/snapshot/package/node_modules/mongoose/node_modules/mongodb/lib/mongodb/connection/connection.js:478:10)
+at Socket.emit (events.js:95:17)
+at net.js:440:14
+at process._tickCallback (node.js:419:13)
+err Tue, 18 Nov 2014 22:20:04 GMT Tue, 18 Nov 2014 22:20:04 GMT express-session deprecated undefined resave option; provide resave option at app.js:60:9
+err Tue, 18 Nov 2014 22:20:04 GMT 
+err Tue, 18 Nov 2014 22:20:04 GMT events.js:72
+err Tue, 18 Nov 2014 22:20:04 GMT throw er; // Unhandled 'error' event
+err Tue, 18 Nov 2014 22:20:04 GMT Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+err Tue, 18 Nov 2014 22:20:04 GMT Error: failed to connect to [localhost:27017]
+at null. (/opt/run/snapshot/package/node_modules/mongoose/node_modules/mongodb/lib/mongodb/connection/server.js:540:74)
+at emit (events.js:106:17)
+at null. (/opt/run/snapshot/package/node_modules/mongoose/node_modules/mongodb/lib/mongodb/connection/connection_pool.js:140:15)
+at emit (events.js:98:17)
+at Socket. (/opt/run/snapshot/package/node_modules/mongoose/node_modules/mongodb/lib/mongodb/connection/connection.js:478:10)
+at Socket.emit (events.js:95:17)
+at net.js:440:14
+at process._tickCallback (node.js:419:13)
