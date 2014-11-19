@@ -27,7 +27,7 @@ var uristring =
   'mongodb://localhost/';    
 
 /*Configuración de la Base de Datos*/
-mongoose.connect(usistring);
+mongoose.connect(uristring);
 
 
 // view engine setup
