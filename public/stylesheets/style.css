@@ -10,6 +10,14 @@
       background: url("/images/fondo_general.png");
  }
 
+ .centrado{
+      text-align: center;
+ }
+
+ .derecha{
+      text-align: right;
+ }
+
 .privado{
       font-style: italic;
       color: #00ffba;
@@ -302,6 +310,9 @@ background: rgba(0,0,0,0.5);
       float: right;
       position: relative;
       width: 700px;
+      height: 630px;
+      overflow-y: auto;
+      overflow-x: hidden;
       margin-top: -640px;
       margin-right: 80px;
       color: #fff;
@@ -317,8 +328,8 @@ background: rgba(0,0,0,0.5);
 }
 
 .libre{
-      position: absolute;
-      color: #fff !important;
+      color: #000 !important;
+      float: right;
 }
 @-moz-document url-prefix() {
 
