@@ -294,6 +294,12 @@ background: rgba(0,0,0,0.5);
 
 }
 
+#menu_batallas li{
+      padding-top: 10px;
+      margin-left: 10px;
+      margin-right: 10px;
+}
+
 #ranking{
       width: 330px;
       height: 311px;

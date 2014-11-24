@@ -96,19 +96,16 @@ for(var i=1; i<11; i++){
 // esta vacio.
 
 pj.defensa= new Object();
-for(var i=1; i<11; i++){
-	if($("#nm_def"+i+"_pj").val() == undefined){
-		fallo = true;
-	} else {
-	pj.defensa[i] = new Object();	
-	pj.defensa[i].nombre = $("#nm_def"+i+"_pj").val();
-	pj.defensa[i].tipo = $("#tipo_def"+i+"_pj").val();
-	pj.defensa[i].especial = $("#especial_def"+i+"_pj").val();
-	pj.defensa[i].gasto = $("#gasto_def"+i+"_pj").val();
-	pj.defensa[i].antidaño = $("#daño_def"+i+"_pj").val();
-	pj.defensa[i].bonus = $("#bonus_def"+i+"_pj").val();
-
-	};
+var x = 1;
+for(var i=0; i<10; i++){
+	pj.defensa[x] = new Object();	
+	pj.defensa[x].nombre = $("#nm_def"+x+"_pj").val();
+	pj.defensa[x].tipo = $("#tipo_def"+x+"_pj").val();
+	pj.defensa[x].especial = $("#especial_def"+x+"_pj").val();
+	pj.defensa[x].gasto = $("#gasto_def"+x+"_pj").val();
+	pj.defensa[x].poder = $("#antidaño_def"+x+"_pj").val();
+	pj.defensa[x].bonus = $("#bonus_def"+x+"_pj").val();
+	x++;
 
 };
 
@@ -120,16 +117,11 @@ for(var i=1; i<11; i++){
 
 pj.habilidades= new Object();
 for(var i=1; i<9; i++){
-	if($("#nombre_hab"+i+"_pj").val() == undefined){
-	fallo = true;
-	} else {
 	pj.habilidades[i] = new Object();	
 	pj.habilidades[i].nombre = $("#nombre_hab"+i+"_pj").val();
 	pj.habilidades[i].tipo = $("#tipo_hab"+i+"_pj").val();
-	pj.habilidades[i].dscripcion = $("#descripcion_hab"+i+"_pj").val();
+	pj.habilidades[i].desc = $("#descripcion_hab"+i+"_pj").val();
 	pj.habilidades[i].clave = $("#clave_hab"+i+"_pj").val();
-	};
-
 };
 
 pj.bases = new Object();
@@ -159,7 +151,7 @@ pj.bases.ba = $("#ba_pj").val();
 		socket.emit('editar_personaje');
 	};
 
-
+console.log(pj.habilidades);
 });
 
 $("#estatico").on("click", "#editarPj", function(event){

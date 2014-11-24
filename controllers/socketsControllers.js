@@ -264,7 +264,7 @@ var socketsControllers = function(app){
 					datos += '<td><input type="text" class="form-control" id="tipo_def'+defensas+'_pj" class="form-control"></td>';
 					datos += '<td><input type="text" class="form-control" placeholder="Aturdir,Paralizar, etc" id="especial_def'+defensas+'_pj" class="form-control"></td>';
 					datos += '<td><input type="text" class="form-control" id="gasto_def'+defensas+'_pj" class="form-control"></td>';
-					datos += '<td><input type="text" class="form-control" id="daño_def'+defensas+'_pj" class="form-control"></td>';
+					datos += '<td><input type="text" class="form-control" id="antidaño_def'+defensas+'_pj" class="form-control"></td>';
 					datos += '<td><input type="text" class="form-control" id="bonus_def'+defensas+'_pj" class="form-control"></td><tr>';
 					defensas++;
 					}
@@ -394,7 +394,6 @@ var socketsControllers = function(app){
 					Ch.verPJ(function(err, res){
 						if(!err){
 							if(res){
-								console.log(res);
 								var pj = res;
 								socket.emit('listaPj', pj);
 							} else {
@@ -416,7 +415,6 @@ var socketsControllers = function(app){
 				//
 
 				socket.on('editarPj', function(id){
-					console.log(id);
 					Ch.buscarPJ(id, function(err, res){
 						if(!err){
 							if(res){
@@ -484,7 +482,7 @@ var socketsControllers = function(app){
 					datos += '<td><input type="text" class="form-control" id="tipo_def'+defensas+'_pj" value="'+res.defensas[defensas].tipo+'" class="form-control"></td>';
 					datos += '<td><input type="text" class="form-control" placeholder="Aturdir,Paralizar, etc" value="'+res.defensas[defensas].especial+'" id="especial_def'+defensas+'_pj" class="form-control"></td>';
 					datos += '<td><input type="text" class="form-control" id="gasto_def'+defensas+'_pj" value="'+res.defensas[defensas].gasto+'" class="form-control"></td>';
-					datos += '<td><input type="text" class="form-control" id="antidaño_def'+defensas+'_pj" value="'+res.defensas[defensas].antidaño+'" class="form-control"></td>';
+					datos += '<td><input type="text" class="form-control" id="antidaño_def'+defensas+'_pj" value="'+res.defensas[defensas].poder+'" class="form-control"></td>';
 					datos += '<td><input type="text" class="form-control" id="bonus_def'+defensas+'_pj" value="'+res.defensas[defensas].bonus+'" class="form-control"></td><tr>';
 					defensas++;
 					}
@@ -504,7 +502,7 @@ var socketsControllers = function(app){
 						datos +=  '<tr><td colspan="2"><input type="text" class="form-control" id="nombre_hab'+habilidad+'_pj" value="'+res.habilidades[habilidad].nombre+'" class="form-control"></td>';
 						datos +=  '<td><input type="text" class="form-control" id="tipo_hab'+habilidad+'_pj" value="'+res.habilidades[habilidad].tipo+'" class="form-control"></td>';
 						datos +=  '<td><input type="text" class="form-control" data-container="body" data-toggle="popover" data-placement="right" value="'+res.habilidades[habilidad].clave+'" data-content="Click en el siguiente link para saber las claves"  title="CLAVES" id="clave_hab'+habilidad+'_pj" class="form-control"></td>';
-						datos +=  '<td colspan="2"><textarea rows="3" cols="10" class="form-control" id="descripcion_hab'+habilidad+'_pj" value="'+res.habilidades[habilidad].descripcion+'" class="form-control"></textarea></td></tr>';
+						datos +=  '<td colspan="2"><textarea rows="3" cols="10" class="form-control" id="descripcion_hab'+habilidad+'_pj" class="form-control">'+res.habilidades[habilidad].desc+'</textarea></td></tr>';
 						habilidad++;
 					};
 
@@ -525,7 +523,7 @@ var socketsControllers = function(app){
 
 					datos += '<tr><th>A. Físico</th>';
 					datos += '<td rowspan="6"><input type="text" class="form-control" id="baseCaballero" value="'+res.bases.caballero+'" class="form-control"></td>';
-					datos += '<td><input type="text" class="form-control" id="afbc_pj" value="'+res.bases.afbc+'" class="form-control"></td>';
+					datos += '<td><input type="text" class="form-control" id="afbc_pj" value="'+res.bases.af+'" class="form-control"></td>';
 					datos += '<td rowspan="6"><input type="text" class="form-control" value="'+res.bases.ba+'" id="ba_pj" class="form-control"></td>';
 					datos += '<td><input type="text" class="form-control" id="afb_pj" value="'+res.bases.baf+'" class="form-control"></td></tr>';
 
@@ -537,7 +535,7 @@ var socketsControllers = function(app){
 
 
 					datos += '<tr><th>D. Física</th>';
-					datos += '<td><input type="text" class="form-control" id="dfbc_pj" value="'+res.bases.dfbc+'" class="form-control"></td>';
+					datos += '<td><input type="text" class="form-control" id="dfbc_pj" value="'+res.bases.df+'" class="form-control"></td>';
 					datos += '<td><input type="text" class="form-control" id="dfb_pj"  value="'+res.bases.bdf+'"class="form-control"></td></tr>';
 
 					//
@@ -548,7 +546,7 @@ var socketsControllers = function(app){
 
 
 					datos += '<tr><th>A. Cosmico</th>';
-					datos += '<td><input type="text" class="form-control" id="acbc_pj" value="'+res.bases.acbc+'" class="form-control"></td>';
+					datos += '<td><input type="text" class="form-control" id="acbc_pj" value="'+res.bases.ac+'" class="form-control"></td>';
 					datos += '<td><input type="text" class="form-control" id="acb_pj" value="'+res.bases.bac+'" class="form-control"></td></tr>';
 
 					//
@@ -559,7 +557,7 @@ var socketsControllers = function(app){
 
 
 					datos += '<tr><th>D. Cosmica</th>';
-					datos += '<td><input type="text" class="form-control" id="dcbc_pj" value="'+res.bases.dcbc+'" class="form-control"></td>';
+					datos += '<td><input type="text" class="form-control" id="dcbc_pj" value="'+res.bases.dc+'" class="form-control"></td>';
 					datos += '<td><input type="text" class="form-control" id="dcb_pj" value="'+res.bases.bdc+'" class="form-control"></td></tr>';
 
 					//
@@ -570,7 +568,7 @@ var socketsControllers = function(app){
 
 
 					datos += '<tr><th>A. Psiquico</th>';
-					datos += '<td><input type="text" class="form-control" id="apbc_pj" value="'+res.bases.apbc+'" class="form-control"></td>';
+					datos += '<td><input type="text" class="form-control" id="apbc_pj" value="'+res.bases.ap+'" class="form-control"></td>';
 					datos += '<td><input type="text" class="form-control" id="apb_pj" value="'+res.bases.bap+'" class="form-control"></td></tr>';
 
 					//
@@ -581,7 +579,7 @@ var socketsControllers = function(app){
 
 
 					datos += '<tr><th>D: Psiquica</th>';
-					datos += '<td><input type="text" class="form-control" id="dpbc_pj" value="'+res.bases.dpbc+'" class="form-control"></td>';
+					datos += '<td><input type="text" class="form-control" id="dpbc_pj" value="'+res.bases.dp+'" class="form-control"></td>';
 					datos += '<td><input type="text" class="form-control" id="dpb_pj" value="'+res.bases.bdp+'" class="form-control"></td></tr>';
 
 					datos +='</table><button type="button" id="enviarPJ" class="btn btn-primary" value="actualizar">Enviar Pj</button></form></div></div>';
@@ -593,6 +591,23 @@ var socketsControllers = function(app){
 						};
 					});
 				});
+
+				// Evento de Socket que permite al administrador
+				// editar una ficha concreta de la base de datos
+				// con los datos nuevos del formulario.
+				//
+				//
+
+				socket.on("actualizarPJ", function(pj){
+					console.log("Se procede a actualizar");
+					console.log(pj);
+					Ch.crearPJ(pj, "actualizar", function(err){
+						if(err){
+							console.log(err);
+						};
+					});
+				});
+
 
 				// Evento de socket que permite al administrador
 				// eliminar una ficha concreta de la base
