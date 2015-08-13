@@ -1,0 +1,29 @@
+<div class="col-md-12 col-xs-12 tabBatallas">
+	<div class="col-md-11 col-xs-11 tabModBatList">
+		<div class="col-md-12 col-xs-12 tabTitulo">
+			Batallas activas
+		</div>
+		<div class="col-md-12 col-xs-12 tabModCon">
+		{{#if this}}
+			<div class="col-md-12 col-xs-12">
+				<div class="col-md-1 col-xs-1">
+					ID:
+				</div>
+				<div class="col-md-2 col-xs-2">
+					Numero de ID
+				</div>
+				<div class="col-md-6 col-xs-6">
+					Titulo de la Batalla
+				</div>
+				<div class="col-md-3 col-xs-13">
+					Boton Para Entrar a la Batalla
+				</div>
+			</div>
+		{{else}}
+			<div class="col-md-12 col-xs-12">
+				No hay Batallas Activadas
+			</div>
+		{{/if}}
+		</div>
+	</div>
+</div>

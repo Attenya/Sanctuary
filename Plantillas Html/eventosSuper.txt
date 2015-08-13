@@ -1,0 +1,35 @@
+<div class="col-md-12 col-xs-12 tabEventosYTorneos">
+	<div class="col-md-11 col-xs-11 tabModEvent">
+		<div class="col-md-12 col-xs-12 tabTitulo">
+			Eventos y Torneos
+		</div>
+		<div class="col-md-12 col-xs-12 tabModCon">
+			{{#if this}}
+			<div class="col-md-12 col-xs-12">
+				Hay Torneos Creados
+			</div>
+			{{else}}
+			<div class="col-md-12 col-xs-12">
+				<div class="col-md-12 col-xs-12 tabTitulo">
+					Añade un Evento y/o Torneo
+				</div>
+				<div class="col-md-2 col-xs-2">
+					<label>Nombre:</label>
+				</div>
+				<div class="col-md-10 col-xs-10">
+					<input type="text" class="form-control">
+				</div>
+			</div>
+			{{/if}}
+		</div>
+	</div>
+
+	<div class="col-md-11 col-xs-11 tabModEvent2">
+		<div class="col-md-12 col-xs-12 tabTitulo">
+			Torneos y Eventos Activos
+		</div>
+		<div class="col-xs-12 col-md-12 tabModCon">
+
+		</div>
+	</div>
+</div>

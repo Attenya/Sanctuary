@@ -1,0 +1,58 @@
+.tabUsuarios{
+	color: #fff;
+	margin-left: 3%;
+	margin-top: 5px;
+}
+
+.tabUsBuscar{
+	border: 1px dotted #616161;
+	border-radius: 5px;
+	padding: 5px 5px 0 5px!important;
+}
+
+.tabUsList{
+	margin-top: 5px;
+	border-left: 1px dotted #616161;
+	border-right: 1px dotted #616161;
+	border-bottom: 1px dotted #616161;
+	border-radius: 5px;
+}
+
+.tabUsUsuario{
+	background: url("/images/Borde-Inferior.png") repeat-x left bottom;
+	padding-bottom: 5px!important;
+	margin-left: 2%;
+}
+#borrarUsuario{
+	margin-left: 7px!important;
+}
+
+#banearUsuario{
+	margin-left: 17px!important;
+}
+.tabUsuarios .libre{
+	margin-left: -50px!important;
+}
+
+.tabUsList2{
+	max-height: 500px;
+	overflow: auto;
+}
+
+.tabUsForm{
+	margin-top: 5px;
+	border: 1px dotted #616161;
+	border-radius: 5px;
+}
+
+.tabUsDatosGenerales{
+	padding: 5px!important;
+}
+
+.avisoCentrado{
+	text-align: center;
+}
+
+.pjUser{
+	margin-top: 5px;
+}

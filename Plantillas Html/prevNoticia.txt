@@ -1,0 +1,51 @@
+<div class="col-md-11 col-xs-11 notCompleta">
+<img src="/images/cerrar.png" data-dismiss="modal" class="close img-responsive">
+      <div class="col-md-8 col-xs-8 notNoticia">
+        <div class="col-md-12 col-xs-12 tabTitulo">
+          {{0.titulo}}
+        </div>
+        <div class="col-md-12 col-xs-12">
+          <img src="{{0.imagen}}" class="img-responsive">
+        </div>
+        <div class="col-md-12 col-xs-12 descCompleta">
+          {{0.desc2}}
+        </div>
+      </div>
+      <div class="col-md-3 col-xs-3 notAutor">
+        <div class="col-md-12 col-xs-12 tabTitulo">
+          {{0.autor}}
+        </div>
+        <div class="col-md-12 col-xs-12 notAutorAvatar">
+            
+        </div>
+        <div class"col-md-12 col-xs-12">
+          <span class="texto">Creada el</span> {{0.fecha}}
+        </div>
+        <div class="col-md-12 col-xs-12 tabTitulo">
+          Temas
+        </div>
+        <div class="col-md-12 col-xs-12">
+          {{#if 0.temas.actu }}
+              Actualización
+          {{/if}}
+          {{#if 0.temas.eventos }}
+              Eventos
+          {{/if}}
+          {{#if 0.temas.sanciones }}
+              Sanciones
+          {{/if}}
+          {{#if 0.temas.reglas }}
+              Reglas
+          {{/if}}
+          {{#if 0.temas.torneos }}
+              Torneos
+          {{/if}}
+          {{#if 0.temas.invasiones }}
+              Invasiones
+          {{/if}}
+          {{#if 0.temas.aventuras }}
+              Aventuras
+          {{/if}}
+        </div>
+      </div>
+    </div>
