@@ -1,0 +1,196 @@
+<div class="col-md-12 col-xs-12 tabNoticias">
+          <img src="/images/cerrar.png" class="libre close img-responsive">
+          <div class="col-xs-11 col-md-11 tabModListT">
+            <div class="col-xs-12 col-md-12 tabTitulo">
+              Listado de Noticias
+            </div>
+            <div class="col-md-12 col-xs-12 tabModNotCon">
+              {{#each this}}
+              <div class="col-md-12 col-xs-12 noticiaBuscada">
+                <div class="col-md-1 col-xs-1">
+                {{id}}
+                </div>
+                <div class="col-md-2 col-xs-3">
+                  {{fecha}}
+                </div>
+                <div class="col-md-7 col-xs-8">
+                  {{titulo}}
+                </div>
+                <div class="col-md-1 col-xs-6">
+                  <button type="button" class="btn btn-xs btn-primary leerNoticia" data-toggle="modal" data-target=".bs-example-modal-lg">Leer</button>
+                </div>
+                <div class="col-md-1 col-xs-6">
+                  <button type="button" class="btn btn-xs btn-danger borrarNoticia">Borrar</button>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          <div class="col-xs-11 col-md-11 tabModNot">
+            <div class="col-md-12 col-xs-12 tabTitulo">
+              Formulario Noticias
+            </div>
+            <form>
+            <div class="col-md-12 col-xs-12">
+              <div class="col-md-2 col-xs-12">
+                <div class="col-md-3 col-xs-3">
+                  <label>ID:</label>
+                </div>
+                <div class="col-md-9 col-xs-9">
+                  <input type="text" class="form-control" id="id">
+                </div>
+              </div>
+              <div class="col-md-9 col-xs-12 col-md-offset-1">
+                <div class="col-md-3 col-xs-3">
+                  <label> Titulo: </label>
+                </div>
+                <div class="col-md-9 col-xs-9">
+                  <input type="text" class="form-control" id="titulo">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 col-xs-8">
+                <div class="col-md-12 col-xs-12 tabTitulo">
+                 Descripción Simple:
+                </div>
+                <div class="col-md-12 col-xs-12">
+                  <textarea row="10" id="desc1" cols="80" style="width:99%; height:150px">
+                    <span style="color: rgb(255, 255, 255);">Texto no superior a XX carácteres</span>
+                  </textarea>
+                </div>
+                <div class="col-md-12 col-xs-12 tabTitulo">
+                 Descrición Completa
+                </div>
+                <div class="col-md-12 col-xs-12">
+                  <textarea row="10" id="desc2" cols="80" style="width:99%; height:150px">
+                    <span style="color: rgb(255, 255, 255);">Sin Límites de Carácteres</span>
+                  </textarea>
+                </div>
+                <div class="col-md-12 col-xs-12">
+              <div class="col-md-2 col-xs-6">
+                <label> Imagen </label>
+              </div>
+              <div class="col-md-2 col-xs-6">
+                891x390
+              </div>
+              <div class="col-md-8 col-xs-12">
+                <input type="text" class="form-control" placeholder="URL externa" id="imagen">
+              </div>
+            </div>
+                <div class="col-md-2 col-xs-2">
+                  <button class="btn btn-default" type="button" id="guardar">Guardar</button>
+                </div>
+                <div class="col-md-2 col-xs-2 col-md-offset-1 col-xs-offset-1">
+                  <button class="btn btn-default" type="button" id="previsualizar" data-toggle="modal" data-target=".bs-example-modal-lg-2">Previsualización</button>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-3 col-md-offset-1 col-xs-offset-1  tabModCuadro">
+              <div class="col-md-12 col-xs-12 tabTitulo">
+                Temas
+              </div>
+              <div class="col-md-12 col-xs-12 checkbox">
+                <label>
+                  <input type="checkbox" value="actu" name="chk[]">
+                  Actualizaciones
+                </label>
+              </div>
+              <div class="col-md-12 col-xs-12 checkbox">
+                <label>
+                  <input type="checkbox" value="reglas" name="chk[]">
+                  Reglas
+                </label>
+              </div>
+              <div class="col-md-12 col-xs-12 checkbox">
+                <label>
+                  <input type="checkbox" value="sanciones" name="chk[]">
+                  Sanciones
+                </label>
+              </div>
+              <div class="col-md-12 col-xs-12 checkbox">
+                <label>
+                  <input type="checkbox" value="eventos" name="chk[]">
+                  Eventos
+                </label>
+              </div>
+              <div class="col-md-12 col-xs-12 checkbox">
+                <label>
+                  <input type="checkbox" value="torneos"  name="chk[]">
+                  Torneos
+                </label>
+              </div>
+              <div class="col-md-12 col-xs-12 checkbox">
+                <label>
+                  <input type="checkbox" value="aventuras" name="chk[]">
+                  Aventuras
+                </label>
+              </div>
+              <div class="col-md-12 col-xs-12 checkbox">
+                <label>
+                  <input type="checkbox" value="invasiones" name="chk[]">
+                  Invasiones
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3 col-xs-3 col-md-offset-1 col-xs-offset-1 tabModCuadro">
+              <div class="col-md-12 col-xs-12 tabTitulo">
+                Calificación
+              </div>
+              <div class=" col-md-12 col-xs-12 checkbox">
+                <label>
+                  <input type="checkbox" value="destacado" name="chk2[]">
+                  Destacado
+                </label>
+              </div>
+              <div class="col-md-12 col-xs-12 checkbox">
+                <label>
+                  <input type="checkbox" value="carrusel" name="chk2[]">
+                  Carrusel
+                </label>
+              </div>
+            </div>
+            </form>
+          </div>
+          <div class="modal fade bs-example-modal-lg tabNotModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                
+              </div>
+            </div>
+          </div>
+          <div class="modal fade bs-example-modal-lg-2 tabNotModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="col-md-11 col-xs-11 notCompleta2">
+                  <img src="/images/cerrar.png" data-dismiss="modal" class="close img-responsive">
+                    <div class="col-md-8 col-xs-8 notNoticia">
+                      <div class="col-md-12 col-xs-12 tabTitulo tituloPrev">
+                        
+                      </div>
+                      <div class="col-md-12 col-xs-12 imagenPrev">
+                        
+                      </div>
+                      <div class="col-md-12 col-xs-12 descCompleta">
+            
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-xs-3 notAutor">
+                      <div class="col-md-12 col-xs-12 tabTitulo autorPrev">
+          
+                    </div>
+                    <div class="col-md-12 col-xs-12 notAutorAvatar">
+                    
+                    </div>
+                    <div class"col-md-12 col-xs-12">
+                      <span class="texto">Creada el</span><div class="fechaPrev"></div>
+                    </div>
+                    <div class="col-md-12 col-xs-12 tabTitulo">
+                       Temas
+                    </div>
+                    <div class="col-md-12 col-xs-12 temasPrev">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+</div>

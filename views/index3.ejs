@@ -1,7 +1,7 @@
 <div class="sin">
-  <div class="col-md-8 col-xs-12 col-lg-8" id="estatico">
-  <div class="col-md-10 col-xs-12 col-md-offset-1 tablon">
-  <div class="col-md-12 col-xs-12 bord-sepa"></div>
+<div class="col-md-8 col-lg-8" id="estatico">
+<div class="col-md-10 col-md-offset-1 tablon">
+  <div class="col-md-12 bord-sepa"></div>
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -20,28 +20,34 @@
           </div>
         </div>
       </div>
-    <div class="col-md-12 col-xs-12 bord-sepa"></div>
-    <div class="col-md-8 col-xs-12 abajo">
-      <div class="col-md-12 col-xs-12 imagen-col"></div>
-        <% for(var i=0; i<not.length; i++) {%>
-          <div class="col-md-12 col-xs-12 bord2">
-            <div class="col-md-3 col-xs-3 center"><%= not[i].fecha  %></div>
-            <div class="col-md-6 col-xs-6"><%= not[i].titulo %></div>
-            <div class="col-md-3 col-xs-3">
-                <a href="/noticias/id/<%=not[i]['id'] %>">Leer Más</a></div>
-          </div>
-        <% } %>
+    <div class="col-md-12 bord-sepa"></div>
+    <div class="col-md-8 abajo">
+      <div class="col-md-12 imagen-col"></div>
+      <div class="col-md-12 bord2">
+        <div class="col-md-3 center">Fecha</div>
+        <div class="col-md-6"><%= not.titulo %></div>
+        <div class="col-md-3">Leer Más</div>
+      </div>
+      <div class="col-md-12 bord2">
+        <div class="col-md-3 center">Fecha</div>
+        <div class="col-md-6">Descripción</div>
+        <div class="col-md-3">Leer Más</div>
+      </div>
+      <div class="col-md-12 bord2">
+        <div class="col-md-3 center">Fecha</div>
+        <div class="col-md-6">Descripción</div>
+        <div class="col-md-3">Leer Más</div>
+      </div>
     </div>
 
-    <div class="col-md-4 col-xs-12">
-      <div class="col-md-12 col-xs-12 imagen-torneven"></div>
+    <div class="col-md-4">
+      <div class="col-md-12 imagen-torneven"></div>
     </div>
-     <div class="col-md-12 col-xs-12 ranking">
+     <div class="col-md-12 ranking">
 
     </div>
 </div>
-
-  </div>
+</div>
  
 
 <div class="col-xs-12 col-md-4 col-lg-4 blanco">
@@ -53,9 +59,7 @@
         <div class="col-md-10" id="mensajes_sistema">
           <div class="col-md-12 titChat1">
             <img src="/images/Mensaje_Sistema.png"></div>
-          <div class="col-md-12 cuerpoChat1">
-            <ul id="msjGenerales"></ul>
-          </div>
+          <div class="col-md-12 cuerpoChat1"></div>
         </div>
         <div class="col-md-10" id="mensajes_chat">
           <div class="col-md-12 titChat1"></div>
@@ -66,7 +70,7 @@
         <div id="botones2" class="col-xs-11 col-md-10 col-md-offset-1 col-xs-offset-1">
           <% if(user) {%>
         <form id="chat_usuario" onsubmit="return false">
-          <div class="col-md-8 col-xs-8">
+          <div class="col-md-7 col-xs-7 col-xs-offset-1 col-md-offset-1">
             <input id="m" class="form-control">
           </div>
           <div class="xol-md-offset-1 col-xs-offset-1 col-md-3 col-xs-3">

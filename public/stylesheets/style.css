@@ -4,11 +4,210 @@
  	box-sizing: 
  	border-box; 
  }
+
+.sin [class*="col-"] {
+    padding: 0;
+}
+
+
+.imagen-col{
+      background: url("/images/T-Noticias.png") no-repeat;
+      height: 43px;
+      width: 100%;
+      border-top: 15px solid #262626;
+      border-bottom: 5px solid #262626;
+}
+
+.imagen-torneven{
+      background: url("/images/T-TornEven.png") no-repeat;
+       height: 43px;
+      width: 100%;
+      border-top: 15px solid #262626;
+      border-bottom: 5px solid #262626;
+}
+
+.ranking{
+  background: url("/images/T-Raking.png") no-repeat;
+  height: 43px;
+      width: 100%;
+      border-top: 15px solid #262626;
+      border-bottom: 5px solid #262626;
+}
+
+.con [class*="col-"] {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.sin{
+      height: 100%;
+}
+
+.row{
+      margin-left: auto;
+}
       
- body { 
+html, body { 
  	font: 13px 	Helvetica, Arial; 
-      background: url("/images/fondo_general.png");
+      background: url("/images/fondo_general.png") no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 97.7%!important;
+    height: 97.7%;
  }
+
+ .textoFlotante{
+      position: absolute;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 320px; 
+      height:80px; 
+      margin-left: -160px; 
+      margin-top: -40px; 
+      display: none;
+      background: #262626;
+      padding: 5px!important;
+      border-radius: 5px;
+      border: 1px solid #616161;
+      text-align: justify;
+      z-index: 999;
+ }
+
+ .textoFlotante .alerta{
+      border-radius: 5px;
+ }
+
+
+
+.avatar{
+      width:100%;
+      height: 100%;
+}
+
+
+ #esc_principal{
+      font-size: 10px;
+      text-align: justify !important;
+      width: 300px;
+ }
+
+/*
+
+COLORES DEL TEXTO DEL CHAT
+
+*/
+
+/*Rangos Atenea*/
+
+.Caballero_de_Atenea{
+      color: #1f8fff;
+      font-weight: bold;
+}
+
+.Viejo_Caballero_de_Atenea{
+      font-weight: bold;
+      color: #00bfdc;
+}
+
+.Caballero_de_Atenea_Omega{
+      font-weight: bold;
+      color: #87ced8;
+}
+/*Rangos de Asgard*/
+
+.Guerrero_de_Asgard{
+      font-weight: bold;
+      color: #27ffff;
+}
+
+/*Rangos Poseidon*/
+
+.General_Marino{
+      font-weight: bold;
+      color: #ff8c00;
+}
+
+/*Rangos Hades*/
+
+.Surplice_de_Hades{
+      color: #8f33cc;
+      font-weight: bold;
+}
+
+/*Rangos Traidores y Renegados*/
+
+.Traidor_Renegado{
+      color: #dfdde1;
+      font-weight: bold;
+}
+
+/*Rangos Olimpo de Zeus*/
+
+.Angel_de_Zeus{
+      font-weight: bold;
+}
+
+/*Rangos Discordia de Eris*/
+
+.Caballero_Fantasma{
+      font-weight: bold;
+      color: #e9b000;
+}
+
+/*Rangos Abel*/
+
+.Caballero_de_la_Corona{
+      color: #dc0b02;
+      font-weight: bold;
+}
+
+/*Rangos Lucifer*/
+
+.Angel_Malefico{
+      color: #00ff00;
+      font-weight: bold;
+}
+
+/*Rangos Laberinto de Cronos*/
+
+.Gigante, .Gigante_de_Cronos{
+      color: #6e46cc;
+      font-weight: bold;
+}
+
+/*
+
+FIN DE LOS COLORES DEL TEXTO DEL CHAT
+
+*/
+#inlineRadio1{
+      max-height:15px !important;
+      margin-left: -40px;
+      margin-bottom:0 !important;
+      font-weight:400 !important;
+      cursor:pointer
+}
+
+#inlineRadio2{
+      max-height:15px !important;
+      margin-left: -40px;
+      margin-bottom:0 !important;
+      font-weight:400 !important;
+      cursor:pointer
+
+}
+
+#battle{
+      background: rgba(0,0,0,0.5);
+      height: 630px;
+      margin-right: 80px;
+      color: #fff;
+      text-align: center;
+      overflow: auto;
+}
 
  .centrado{
       text-align: center;
@@ -29,31 +228,32 @@
       text-align: center;
 }
 
+
+.peque2{
+      font-size: 10px;
+      margin-top: 10px;
+}
+
 .peque{
       height: 50px;
 }
 
 #panel_administracion{
       background: rgba(0,0,0,0.5);
-      float: right;
-      position: relative;
-      width: 300px;
-      margin-top: -640px;
-      margin-right: 280px;
       color: #fff;
       text-align: center;
 }
 
+#panel_administracion ul{
+      list-style-type: none;
+}
+
 #panel_administracion li{
-      width: 280px;
+      width: 100%;
       margin-left: 10px;
       margin-top: 10px;
 }
- .vacio{
-      height: 90px;
-      background: rgba(0,0,0,0.5);
-      width: 100%;
- }
+
 
 .cuadro{
       background: rgba(0,0,0,0.5);
@@ -81,6 +281,11 @@
       margin-top: 10px;
 }
 
+.imagen3{
+      width: 400px !important;
+      height: 200px !important;
+}
+
 .centrar{
       margin-left: auto;
       margin-right: auto;
@@ -88,47 +293,7 @@
       color: #fff;
 }
 
-.navbar{
-      width: 100%;
-      background: #1d0000;
-      padding: 5px;
-      height: 53px;
 
-}
-
-.navbar-logo{
-      width: 150px;
-}
-
-.navbar-menu{
-      width: 80%;
-      margin-left: 200px;
-      font-family: Arial;
-      font-size: 14px;
-      color: #fff;
-      margin-top: 10px;
-}
-
-.navbar-menu li{
-      display:inline-block;
-      margin-left: 10px;
-}
-
-.navbar-user{
-      float:right;
-      display: inline-block;
-      margin-top: -30px;
-
-}
-
-.navbar-menu a{
-color: #9d9d9d;
-text-decoration: none;
-}
-
-.navbar-menu a:hover{
-      color: #fff;
-}
 
  /*Configuración general del chat*/
  #chat{
@@ -137,16 +302,19 @@ text-decoration: none;
       margin-top: -10px;
  }
 
+ .tamano{
+      height: 100%;
+ }
+
 #mensajes_chat{
-      height: 273px;
-      width: 409px;
-      margin-left: 5px;
-background:rgba(0,0,0,0.5);
-margin-top: 5px !important;
-overflow: auto;
+      min-height: 66.8%;
+height: 66.8%;
 color: #fff;
 text-align: justify;
+margin-left: 8.333333333%!important;
+
 }
+
 ::-webkit-scrollbar {
 background: white;
 height: 12px;
@@ -160,13 +328,36 @@ background: #730302;
 background: #730302;
 }
 #mensajes_sistema{
-     height: 273px;
-      width: 529px;
-      background: rgba(0,0,0,0.5);
-      margin-top: 5px !important;
-      margin-left: 5px;
-      overflow: auto;
+     min-height: 30%;
+     height: 30%;
       text-align: justify;
+color: #fff;
+text-align: justify;
+margin-left: 8.333333333%!important;
+
+
+}
+
+.titChat1{
+      background: url("/images/Sistema_Titulo_Chat.png") repeat-x;
+      height: 24px;
+      border-top: 1px solid #616161;
+      border-left: 1px solid #616161;
+      border-right: 1px solid #616161;
+      border-radius: 5px 5px  0 0;
+      margin-top: 10px;
+}
+
+.titChat1 img{
+      margin-left: 8.3333333%;
+}
+
+.cuerpoChat1{
+      height: 89%;
+      overflow: auto;
+      background: #262626;
+       border-left: 1px solid #616161;
+      border-right: 1px solid #616161;
 }
 
   #mensajes_chat, #mensajes_sistema { 
@@ -180,25 +371,35 @@ background: #730302;
       padding-right: 5px;
 }
 
+#my_ul ul{
+      min-height: 90%;
+      height: 90%;
+}
+
 #conectados{
-      width: 120px;
-      height: 273px;
-      background: rgba(0,0,0,0.5);
-      position: absolute;
-      margin-top: -360px;
-      margin-left: 417px;
+      height: 90%;
+      background: rgba(38,38,38,1);
+      overflow: auto;
+      margin-top: 5%;
+      border-radius: 5px;
+      border: 1px solid #616161;
 }
 
 #conectados li{
       list-style-type: none;
-      padding-left: 5px;
-      padding-right: 5px;
-      color: #fff;
+      padding-left: 10px;
+      padding-bottom: 5px;
+      background: url("/images/Borde-Inferior.png") repeat-x left bottom;
 }
+
 
 #conectados li:hover{
       text-decoration: underline;
       cursor: pointer;
+}
+
+#conectados ul{
+      height: auto;
 }
 
 .peque{
@@ -215,8 +416,14 @@ background: rgba(0,0,0,0.5);
 }
 
 #botones2{
-      width: 100%;
-      background: rgba(0,0,0,0.5);
+      height: 3.2%;
+      background: rgba(38,38,38,1);
+      padding-bottom: 5px!important;
+      margin-top: -45px;
+      border-left: 1px solid #616161;
+      border-right: 1px solid #616161;
+      border-bottom: 1px solid #616161;
+      border-radius:  0 0 5px 5px;
 }
 
 #botones ul{
@@ -234,12 +441,6 @@ width: 90px;
 padding: 5px;
 }
 
-#enviar{
-      width: 90px;
-      height: 100%;
-      padding: 5px;
-      margin-left: 5px;
-}
 
 #enviar_room{
       width: 90px;
@@ -251,7 +452,7 @@ padding: 5px;
       form input { 
       	border: 0; 
       	padding: 10px; 
-      	width: 79%; 
+      	; 
       	margin-left: .5%; 
             height: 28px;
             border: 1px solid #000;
@@ -268,58 +469,39 @@ padding: 5px;
       /*Se colocan los cuadros que corresponden a las Noticias, Batallas y Ranking*/
 
 #noticias{
-position: relative;
-float: right;
-margin-top: -640px;
-margin-right: 80px;
-width: 700px;
-height: 280px;
 background: rgba(0,0,0,0.5);
 
 }
 
-.carousel{
-      margin-left: 10px;
-      margin-top: 10px;
-}
 
 #menu_batallas{
-      width: 330px;
       height: 311px;
       background: rgba(0,0,0,0.5);
-      float: right;
-      position: relative;
-      margin-top: -330px;
-      margin-right: 450px;
-
+      margin-top: 20px;
 }
 
 #menu_batallas li{
-      padding-top: 10px;
       margin-left: 10px;
       margin-right: 10px;
 }
 
+#menu_batallas li+li{
+      margin-top: -10px;
+}
+
 #ranking{
-      width: 330px;
       height: 311px;
       background: rgba(0,0,0,0.5);
-      float: right;
-      position: relative;
-      margin-top: -330px;
-      margin-right: 80px;
+
+      margin-top: 20px;
 
 }
 
 #perfil{
       background: rgba(0,0,0,0.5);
-      float: right;
-      position: relative;
-      width: 700px;
       height: 630px;
       overflow-y: auto;
       overflow-x: hidden;
-      margin-top: -640px;
       margin-right: 80px;
       color: #fff;
 }
@@ -335,183 +517,18 @@ background: rgba(0,0,0,0.5);
 
 .libre{
       color: #000 !important;
-      float: right;
-}
-@-moz-document url-prefix() {
-
-body{
-      font-size: 10px !important;
+      cursor: pointer;
 }
 
-.imagen{
-      width: 455px !important;
-     height: 182px !important;
+.close{
+      opacity: 1!important;
 }
 
-.navbar{
-      width: 100%;
-      height: 30px;
-      background: #1d0000;
-      border-bottom: 1px solid red;
-      padding: 5px;
-
-}
-
-.navbar-logo{
-      width: 150px;
-}
-
-.navbar-menu{
-      width: 80%;
-      margin-left: 200px;
-      font-family: Arial;
+@media(max-width:800px ) and (min-width: 300px){
+      .textoFlotante{
       font-size: 10px;
-      color: #9d9d9d;
-      margin-top: 10px;
-}
-
-.navbar-menu a:hover{
-color: #fff;
-}
-
-.navbar-menu li{
-      display:inline-block;
-      margin-left: 10px;
-}
-
-.navbar-user{
-      float:right;
-      display: inline-block;
-      margin-top: -28px;
-}
-
-.navbar-menu a{
-color: #9d9d9d;
-}
- /*Configuración general del chat*/
- #chat{
-      margin-left: 5px;
-      width: 429px;
  }
 
-#mensajes_chat{
-      height: 203px;
-      width: 429px;
-      margin-left: 5px;
-background:rgba(0,0,0,0.5);
-margin-top: 5px !important;
-overflow: auto;
-color: #fff;
-}
 
-#mensajes_sistema{
-     height: 190px;
-      width: 429px;
-      background: rgba(0,0,0,0.5);
-      margin-top: 5px !important;
-      margin-left: 5px;
-      overflow: auto;
-}
-
-  #mensajes_chat, #mensajes_sistema { 
-            list-style-type: none; 
-            margin: 0; 
-            padding: 0; 
-      }
-
-
-      #mensajes_chat:nth-child(odd){
-       background: #eee; 
-   }
-/*Se da forma a los botones del chat*/
-
-
-#botones{
-width: 100%;
-background: rgba(0,0,0,0.5);
-}
-
-#botones2{
-      width: 100%;
-      background: rgba(0,0,0,0.5);
-      margin-top: -10px;
-}
-
-#botones ul{
-      width: 100%;
-}
-
-#botones li {
-      display: inline-block;
-      width: 90px;
-      padding: 5px;
-}
-
-#botones button{
-width: 90px;
-padding: 5px;
-}
-
-#enviar{
-      width: 90px;
-      height: 100%;
-      padding: 5px;
-      margin-left: 5px;
-}
-
-#enviar_room{
-      width: 90px;
-      height: 100%;
-      padding: 5px;
-      margin-left: 5px;
-}
-/*Se le da forma al input del texto*/
-      form input { 
-            border: 0; 
-            padding: 10px; 
-            width: 75%; 
-            margin-left: .5%; 
-            height: 28px;
-            border: 1px solid #000;
-      }
-
-      
-
-      #mensajes_chat, #mensajes_sistema { 
-            list-style-type: none; 
-            margin: 0; 
-            padding: 0; 
-      }
-
-#noticias{
-position: relative;
-float: right;
-margin-top: -478px;
-margin-right: 120px;
-width: 500px;
-height: 210px;
-background: rgba(0,0,0,0.5);
 
 }
-
-#menu_batallas{
-      width: 230px;
-      height: 211px;
-      background: rgba(0,0,0,0.5);
-      float: right;
-      position: relative;
-      margin-top: -240px;
-      margin-right: 390px;
-}
-
-#ranking{
-      width: 230px;
-      height: 211px;
-      background: rgba(0,0,0,0.5);
-      float: right;
-      position: relative;
-      margin-top: -240px;
-      margin-right: 120px;
-
-}
-      }

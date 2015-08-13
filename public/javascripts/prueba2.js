@@ -6,6 +6,17 @@ var perfil = "";
 var tabla = "";
 var pj = new Object();
 
+socket.on("connect", function(){
+if(usuario == null){
+var datos = usuario;
+socket.emit('conectar', datos);
+} else {
+var datos = usuario.user_id;
+var bando = usuario.bando;
+socket.emit('conectar', datos, bando);
+}
+});
+
 // Funcion Usuario Privado:
 //		Permite al usuario enviar el mensaje del chat
 //		Diferenciando entre mensaje privado y general.
@@ -40,6 +51,31 @@ $("#chat_usuario").submit(function(event){
 	}	
 	$("#m").val("");
 });
+
+socket.on('recargar', function(msg){
+	$.each(msg, function(indice, mensaje){
+
+ $('#my_ul').append($('<li>').html("<span id='perfil2' class='"+mensaje.bando+"'>"+mensaje.emisor+"</span>: "+mensaje.mensaje));
+	});
+
+});
+
+
+ socket.on('chat', function(msg){
+ $('#my_ul').append($('<li>').html(msg));
+ var d = $('.cuerpoChat1');
+var height = d[0].scrollHeight;
+d.scrollTop(height);
+ })
+
+ socket.on('errorPrivado', function(data){
+	var error = "El usuario "+data+" no se encuentra conectado";
+	$('#my_ul').append($('<li class="alerta">').text(error));
+})
+
+socket.on("msjGeneral1", function(mensaje){
+	$("#msjGenerales").append(mensaje);
+})
 
 // Funcion Usuario Privada:
 //		Permite al usuario colocar lo preciso
@@ -111,11 +147,27 @@ socket.emit('disconnect', perfil);
 //
 
 $('#estatico').on('click', ".libre", function(event){
-	$(".Vperfil, #panel_administracion, .tabMod, #battle, .notCompleta, .tabNoticias, .tabBatallas, .tabEventosYTorneos").remove();
+	$(".Vperfil, #panel_administracion, .tabMod, #battle, .notCompleta, .tabNoticias").remove();
 	history.pushState('', 'New Url: '+"Inicio", "/");
 	event.preventDefault();
 	socket.emit("tablon");
 })
+
+socket.on("tablonCompleto", function(noticias, template){
+	Handlebars.registerHelper('if2', function(a, options){
+	if(a== null || a == undefined || a == ""){
+		 return options.fn(this);
+	} else {
+		 return options.inverse(this);
+	}
+});
+	console.log(template);
+	var plantilla = Handlebars.compile(template);
+	var html = plantilla(noticias);
+	$("#estatico").append(html);
+})
+
+
 
 socket.on("prv", function(data){
 $('#my_ul').append($('<li class="privado">').html(data));
@@ -151,13 +203,6 @@ $("#moderacion").click(function(event){
 	event.preventDefault();
 })
 
-$("#Smoderacion").click(function(event){
-	$('.Vperfil, #battle, .notCompleta, .tablon').remove();
-	socket.emit('SPortal');
-	history.pushState('', 'New Url: '+"Moderación", "/Smoderacion");
-	event.preventDefault();
-})
-
 //
 //
 //		/*Apartado Portal*/
@@ -184,13 +229,6 @@ $('#estatico').on("click", "#mod", function(event){
 	socket.emit(menu);
 })
 
-$('#estatico').on("click", "#Sportal", function(event){
-	$(this).siblings().removeClass("active");
-	$(this).addClass("active");
-	var menu = $(this).text();
-	socket.emit("SPortal");
-})
-
 socket.on("portal", function(users, template, pjs, noticias){
 $(".tabMod, .tablon").remove()
 var usuarios_totales = 0;
@@ -213,28 +251,6 @@ for(var i = 0; i<noticias.length; i++){
 $(".tabNotSimple").append(not);
 });
 
-socket.on("Sportal", function(users, template, pjs, noticias){
-$(".tabMod, .tablon").remove()
-var usuarios_totales = 0;
-for(var i=0; i < users.length; i++ ){
-	usuarios_totales++;
-
-}
-var plantilla = Handlebars.compile(template);
-var html = plantilla(users);
-$("#estatico").append(html);
-$(".EstUsers").append(usuarios_totales);
-$(".EstPjs").append(pjs);
-$("#Sportal").addClass("active");
-var not = "";
-for(var i = 0; i<noticias.length; i++){
-	not += "<div class='col-md-12 col-xs-12'><div class='col-md-2 col-xs-3'>"+noticias[i].fecha+"</div><div class='col-md-10 col-xs-9'>";
-	not += "<a href='Noticias/id/"+noticias[i]['id']+"'>"+noticias[i].titulo+"</a></div></div>";
-}
-
-$(".tabNotSimple").append(not);
-});
-
 //
 //	/*Apartado - Noticias*/
 //
@@ -242,7 +258,7 @@ $(".tabNotSimple").append(not);
 //
 
 socket.on("Noticias", function(noticias, template){
-$(".tabPortal, .tabNoticias, .tablon, .tabUsuarios, .tabBatallas, .tabEventosYTorneos").remove();
+$(".tabPortal, .tabNoticias, .tablon, .tabUsuarios").remove();
 var plantilla = Handlebars.compile(template);
 var html = plantilla(noticias);
 $(".tabModFijo").append(html);
@@ -304,7 +320,7 @@ $("#estatico").on("click", "#guardar", function(event){
 })
 
 $("#estatico").on("click", "#previsualizar", function(event){
-$(".descCompleta, .tituloPrev, .autorPrev, .fechaPrev, .temasPrev, .notAutorAvatar").empty();
+$(".descCompleta, .tituloPrev, .autorPrev, .fechaPrev, .temasPrev").empty();
  $(".tituloPrev").append($("#titulo").val());
  $(".autorPrev").append(usuario.user_id);
  $(".imagenPrev img").addClass("img-responsive");
@@ -344,7 +360,7 @@ String.prototype.capitalize = function() {
 //
 //
 socket.on("listaUsuarios", function(users, template){
-	$(".tabPortal, .tabNoticias, .tablon, .tabNoticias, .tabUsuarios, .tabBatallas, .tabEventosYTorneos").remove();
+	$(".tabPortal, .tabNoticias, .tablon, .tabNoticias, .tabUsuarios").remove();
 	var plantilla = Handlebars.compile(template);
 	var html = plantilla(users);
 	$(".tabModFijo").append(html);
@@ -400,220 +416,3 @@ $("#estatico").on("click", "#editarUsuario", function(event){
 		var divId = hermanos[1]['innerText'];
 		socket.emit("buscarUsuario", divId, "edicion");
 })
-
-$("#estatico").on("click", "#guardarEdit", function(event){
-	var us = new Object();
-	us['user_id'] = $("#user_id").val();
-	us.avatar = $("#avatar").val();
-	us.mail = $("#mail").val();
-	us.bando = $("#bando option:selected").val();
-	us.range = $("#range option:selected").val();
-	us.badges = $("#badges").val();
-	socket.emit("editarUsuario", us);
-});
-
-$("#estatico").on("click", "#borrarUsuario", function(event){
-	var divPadre = $(this).closest("div");
-		var hermanos = divPadre.siblings("div");
-		var divId = hermanos[1]['innerText'];
-		socket.emit("borrarUsuario", divId);
-})
-
-socket.on("err", function(tipo){
-	if(tipo == "borrarStaff"){
-		$(".textoFlotanteTxt").empty();
-		$(".textoFlotanteTxt").append("No se puede borrar este usuario por ser miembro del Staff. Sólo el administrador tiene privilegios para ello");
-		$(".textoFlotante").show();
-
-	}
-});
-
-$(".error").on("click", function(event){
-	$(".textoFlotante").hide();
-})
-
-
-
-//
-//
-//	/* Apartado - Batallas */
-//
-//
-
-socket.on("batMod", function(bat, template){
-		$(".tabPortal, .tabNoticias, .tablon, .tabNoticias, .tabUsuarios, .tabBatallas, .tabEventosYTorneos").remove();
-	var plantilla = Handlebars.compile(template);
-	var html = plantilla(bat);
-	$(".tabModFijo").append(html);
-
-})
-
-
-//
-//
-//	/* Apartado - Eventos y Torneos */
-//
-//
-
-socket.on("Eventos y Torneos", function(eventos, template){
-	$(".tabPortal, .tabNoticias, .tablon, .tabNoticias, .tabUsuarios, .tabBatallas, .tabEventosYTorneos").remove();
-	var plantilla = Handlebars.compile(template);
-	var html = plantilla(eventos);
-	$(".tabModFijo").append(html);
-	whizzywig()
-})
-
-
-
-
-
-
-
-
-
-socket.on('listaPj', function(charac){
-	$('.Vperfil, #panel_moderacion, #panel_administracion').remove();
-	total = 0;
-	if(charac == null){
-		tabla = '<div id="perfil"><button type="button" class="libre">Cerrar</button>'
-		tabla +='<div class="col-sm-12"><h2>Lista de Personajes</h2><table class="table table-hover">';
-		tabla +='<thead><tr><th>#</th><th>Nombre</th><th>Activo</th><th>Estado</th></tr></thead><tbody>';
-		tabla +='<tr><td>#</td><td>----</td><td>----</td><td>----</td></tr>';
-		tabla +='</tbody></table></div> <div class="col-sm-12"><button type="button" class="btn btn-primary" id="nuevo_personaje">Añadir Personaje</button></div></br></div>'
-		$('#estatico').append(tabla);
-
-	} else {
-		tabla = '<div id="perfil"><button type="button" class="libre">Cerrar</button>'
-		tabla +='<div class="col-sm-12"><h2>Lista de Personajes</h2><table id="listado" class="table centrado">';
-		tabla +='<thead><tr><th class="centrado">#</th><th class="centrado">Nombre</th><th class="centrado">Activo</th><th class="centrado">Estado</th><th></th><th></th></tr></thead><tbody><tr>';
-		$.each(charac, function(indice, persn){
-			if(persn.activo === true){
-				if(persn.estado === "Dañado"){
-					tabla +='<tr class="warning"><td>'+persn.charac_id+'</td><td>'+persn.nombre+'</td><td>'+persn.activo+'</td><td>'+persn.estado+'</td>';
-					tabla += '<td><button type="button" id="editPj2"  class="btn btn-primary btn-xs" >Editar</button></td>';
-					tabla +='<td><button type="button" id="eliminarPj" class="btn btn-primary btn-xs">Eliminar</button></td></tr>';
-				}else {
-					if(persn.estado === "Destruido"){
-						tabla +='<tr class="danger"><td>'+persn.charac_id+'</td><td>'+persn.nombre+'</td><td>'+persn.activo+'</td><td>'+persn.estado+'</td>';
-						tabla +='<td><button type="button" id="editPj2"  class="btn btn-primary btn-xs">Editar</button></td>';
-						tabla +='<td><button type="button" id="eliminarPj" class="btn btn-primary btn-xs">Eliminar</button></td></tr>';
-					}else  {
-						tabla +='<tr class="success"><td>'+persn.charac_id+'</td><td>'+persn.nombre+'</td><td>'+persn.activo+'</td><td>'+persn.estado+'</td>';
-						tabla +='<td><button type="button" id="editPj2" class="btn btn-primary btn-xs">Editar</button></td>';
-						tabla +='<td><button type="button" id="eliminarPj" class="btn btn-primary btn-xs">Eliminar</button></td></tr>';
-					}
-				}
-			} else {
-				tabla +='<tr><td>'+persn.charac_id+'</td><td>'+persn.nombre+'</td><td>'+persn.activo+'</td><td>'+persn.estado+'</td>';
-				tabla +='<td><button type="button" id="editPj2"  class="btn btn-primary btn-xs" >Editar</button></td>';
-				tabla +='<td><button type="button" id="eliminarPj" class="btn btn-primary btn-xs">Eliminar</button></td></tr>';
-			}
-	});
-
-	}
-	tabla += '</tbody></table></div></div>';
-	$('#estatico').append(tabla);
-});
-
-
-
-
-socket.on("connect", function(){
-if(usuario == null){
-var datos = usuario;
-socket.emit('conectar', datos);
-} else {
-var datos = usuario.user_id;
-var bando = usuario.bando;
-socket.emit('conectar', datos, bando);
-}
-});
-
-
-socket.on('recargar', function(msg){
-	$.each(msg, function(indice, mensaje){
-
- $('#my_ul').append($('<li>').html("<span id='perfil2' class='"+mensaje.bando+"''>"+mensaje.emisor+"</span>: "+mensaje.mensaje));
-	});
-
-});
-
-
- socket.on('chat', function(msg){
- $('#my_ul').append($('<li>').html(msg));
- var d = $('.cuerpoChat1');
-var height = d[0].scrollHeight;
-d.scrollTop(height);
- })
-
-
-socket.on('errorPrivado', function(data){
-	var error = "El usuario "+data+" no se encuentra conectado";
-	$('#my_ul').append($('<li class="alerta">').text(error));
-})
-
-
-
-
-
-socket.on("Bien", function(evento){
-	if(evento == "Noticias"){
-			socket.emit("Noticias");
-	}
-
-})
-
-
-
-
-socket.on("tablonCompleto", function(noticias, template){
-	Handlebars.registerHelper('if2', function(a, options){
-	if(a== null || a == undefined || a == ""){
-		 return options.fn(this);
-	} else {
-		 return options.inverse(this);
-	}
-});
-	console.log(template);
-	var plantilla = Handlebars.compile(template);
-	var html = plantilla(noticias);
-	$("#estatico").append(html);
-})
-
-socket.on("msjGeneral1", function(mensaje){
-	$("#msjGenerales").append(mensaje);
-})
-
-
-
-var unirseRoom = function(room){
-$('#mensajes_sistema').append($("<li>").text("Te has unido al chat "+room));
-chatRoom = room; 
-$('#mensajes_chat').append($("<li>").text("Te has unido al chat "+chatRoom));
-socket.emit("unir", room);
-$('#unirse, #enviar').remove();
-$('#botones2').append($("<button onclick='this.form.envio()' id='enviar_room'>Enviar</button>"));
-$("#boton2").append($("<button id='room' onclick='this.form.envio()' id='enviar_room'>"+room+"</button>"));
-$("#boton3").append($("<button id='salir' onclick='salirRoom()' id='salir_room'>Salir</button>"));
-
-
- }
-
-var salirRoom = function(room){
- $('#mensajes_sistema').append($("<li>").text("Has salido del chatroom "));
-socket.emit("dscroom", room);
-$("#room, #salir, #enviar_room").remove();
-$("#boton2").append($("<button id='unirse' onclick='unirseRoom(\"room1\")'>Unirse</button>"));
-$("#botones2").append($("<button onclick='this.form.envio()' id='enviar'> Enviar</button>"));
-chatRoom = null;
- }
-});
-
-$("#estatico #probando a").on("click", function(e){
-	var href = $(this).attr("href");
-	history.pushState('', 'New Url: '+href, href);
-	e.preventDefault();
-
-})
-
-

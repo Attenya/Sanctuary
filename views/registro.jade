@@ -1,0 +1,45 @@
+extend layout
+block content
+	div(class="container")
+		div(class="cuadro")
+			h1(class="signup-title title") Crear Una Cuenta
+			div(class="col-md-12")
+				div(class="col-md-6")
+					<img src="" class="img-thumbnail imagen">
+					ul
+						li
+							| Juego en tiempo real con sonidos y animaciones basado en el juego de foro por turno El Santuario.
+						li
+							| Conviértete en uno de tus personajes favoritos de la conocida saga de Saint Seiya: Los Caballeros del Zodíaco.
+						li
+							| Chatea y comparte estrategias con otros jugadores tanto dentro como fuera de las batallas
+						li
+							| Realiza combates para hacer crecer tu personaje.
+						li
+							| Consigue monedas para adquirir objetos temporales para aumentar los poderes de tu personaje
+				div(class="col-md-6")
+					div(class="signup")
+						form(role="form", method="post",class="form-horizontal")
+							<br>
+							div(class="form-group")
+								label(for="user_id", class="col-sm-3 control-label") ID
+								div(class="col-sm-8")
+									input(type="text", id="user_id", name="user_id", class="form-control")
+							div(class="form-group")
+								label(for="pass", class="col-sm-3 control-label") Password
+								div(class="col-sm-8")
+									input(type="pass", id="pass", name="pass", class="form-control")
+							div(class="form-group")
+								label(for="mail", class="col-sm-3 control-label") Correo
+								div(class="col-sm-8")
+									input(type="text", id="mail", name="mail", class="form-control")
+							div(class="form-group")
+								label(for="pin", class="col-sm-3 control-label") PIN
+								div(class="col-sm-8")
+									input(type="password",class="form-control",placeholder="PIN", data-container="body", data-toggle="popover", data-placement="right", data-content="Válido sólo para usuarios provenientes de USS - El Santuario", title="PIN")
+							div(class="form-group")
+								label(class="col-sm-3 control-label")
+								div(class="col-sm-8")
+									button(type="submit", class="btn btn-success") Registrar
+	script(type="text/javascript")
+		$('[data-toggle="popover"]').popover({trigger:'hover', 'placement': 'left'});

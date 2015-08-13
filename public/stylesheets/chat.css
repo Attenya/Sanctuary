@@ -1,0 +1,40 @@
+#botones2 input{
+		margin-top: -10px!important;
+		margin-left: 5px;
+}
+
+	#botones2 button{
+		margin-top: -7px!important;
+}
+
+.msjGeneral1{
+	color: #eaf902;
+	padding: 5px!important;
+}
+
+
+
+@media(max-width:800px ) and (min-width: 300px){
+	#my_ul{
+		font-size: 10px;
+	}
+
+	#ulConectados{
+		font-size: 10px;
+	}
+
+	#botones2 input{
+		margin-top: -15px!important;
+}
+
+	#botones2 button{
+		margin-top: -20px!important;
+}
+
+.msjGeneral1{
+	font-size: 10px;
+}
+
+
+
+}

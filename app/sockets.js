@@ -73,7 +73,7 @@ if(err){
 }
 
 if(user){
-	datos = '<div id="perfil"><button type="button" class="close"><span class="libre" aria-hidden="false">&times;</span><span class="sr-only">Close</span></button>';
+	datos = '<div id="perfil" class="col-md-12"><button type="button" class="close"><span class="libre" aria-hidden="false">&times;</span><span class="sr-only">Close</span></button>';
 	datos += '<div class="col-xs-3 col-sm-3"><img src="" class="img-thumbnail imagen2">';
 	datos += user.avatar;
 	datos += '</div><div class="col-sx-6 col-sm-6"><br><label class="col-sm-6 control-label">Usuario</label><div class="col-sm-6">';
@@ -126,10 +126,10 @@ if(charac){
 
 /*Evento de socket que muestra la pantalla de Administración*/
 socket.on('administracion', function(){
-	datos = '<div id="panel_administracion"><button type="button" class="close"><span class="libre" aria-hidden="false">&times;</span><span class="sr-only">Close</span></button><h3>Panel de Administracion</h3>';
+	datos = '<div class="col-md-4"></div><div id="panel_administracion" class="col-md-4"><button type="button" class="close"><span class="libre" aria-hidden="false">&times;</span><span class="sr-only">Close</span></button><h3>Panel de Administracion</h3>';
 	datos +='<ul><li><div class="btn btn-primary btn-lg btn-block" id="nuevo_personaje">Añadir Personaje</div></li><li><div class="btn btn-primary btn-lg btn-block">Editar Personaje</div></li>';
 	datos +='<li><div class="btn btn-primary btn-lg btn-block">Eventos Web</div></li><li><div class="btn btn-primary btn-lg btn-block">Noticias</div></li>';
-	datos +='<li><div class="btn btn-primary btn-lg btn-block">Moderar Batallas</div></li><li><div class="btn btn-primary btn-lg btn-block">Moderar Ranking</div></li></ul></div>';
+	datos +='<li><div class="btn btn-primary btn-lg btn-block">Moderar Batallas</div></li><li><div class="btn btn-primary btn-lg btn-block">Moderar Ranking</div></li></ul></div><div class="col-md-4"></div>';
 	socket.emit('recibir_administracion', datos);
 });
 

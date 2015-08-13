@@ -7,8 +7,6 @@ var cookieParser = require('cookie-parser');
 var app = express();
 var http = require('http').createServer(app);
 
-var routes = require('./routes');
-var users = require('./controllers/users');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
