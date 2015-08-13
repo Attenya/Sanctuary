@@ -1,6 +1,4 @@
 var User = require('../models/users');
-var Not = require('../models/noticias');
-var Ch = require('../models/characters');
 
 // app/routes.js
 module.exports = function(app, passport) {
@@ -9,17 +7,7 @@ module.exports = function(app, passport) {
     // HOME PAGE (with login links) ========
     // =====================================
     app.get('/',function(req, res) {
-        Not.bus5(function(err,res2){
-            if(err){
-                console.log(err);
-                res.render('index', {user: req.user}); // load the index.ejs file
-            }
-            if(res2){
-                res.render('index', {user: req.user, not: res2, sin: "Texto"}); // load the index.ejs file
-            }
-
-        })
-        
+        res.render('index', {user: req.user}); // load the index.ejs file
     });
 
     // =====================================
@@ -72,7 +60,6 @@ module.exports = function(app, passport) {
             if(err){return next(err)};
             if(user){
                 user.chat = "desconectado";
-                console.log(req.user.user_id + " se ha desconectado");
                 user.save(function(err){
                     if(err){
                         return next(err);
@@ -88,144 +75,6 @@ module.exports = function(app, passport) {
         
     });
 
-
-    /*Ruta que muestra una noticia con ID*/
-
-    app.get('/noticias/id/:not_id', function(req, res){
-        var id = req.params.not_id;
-        Not.buscarNoticia(id, function(err, noticia){
-            if(noticia){
-                var autor = noticia[0].autor;
-                User.find({user_id: autor}, function(err, us){
-                    if(err){
-                        console.log(err);
-                    } else {
-                        console.log(noticia[0].temas)
-                        res.render("noticias", {
-                            user: req.user,
-                            n: noticia,
-                            a: us
-                        });
-                    }
-                })
-                
-            } else {
-                res.redirect("/");
-            }
-        })
-
-    });
-
-    /*Ruta del Panel de Moderación*/
-
-    app.get("/moderacion", isLoggedIn, function(req, res){
-        User.findOne({user_id: req.user.user_id}).exec(function(err, us){
-            if(!err){
-                if(us.range >= 4){
-                    User.find({}).sort({$natural:-1}).limit(5).exec(function(err, us2){
-                        if(us2){
-                            var usuarios_totales = 0;
-                            for(var i=0; i < us2.length; i++ ){
-                                 usuarios_totales++;
-
-                            }
-                            Ch.verPJ(function(err, pjs){
-                                if(!err){
-                                    if(pjs){
-                                        var pjTotales = 0;
-                                        for(var i=0; i<pjs.length; i++){
-                                            pjTotales++
-                                        }
-                                        Not.bus5(function(err, noticias){
-                                            if(noticias){
-                                                res.render("moderacion", {
-                                                    user: req.user,
-                                                    n: noticias,
-                                                    pj: pjTotales,
-                                                    us: us2,
-                                                    usT: usuarios_totales
-                                                })
-                                            }
-                                        })
-                                    }else {
-                                        var pjTotales = 0;
-                                        Not.bus5(function(err, noticias){
-                                            if(noticias){
-                                                res.render("moderacion", {
-                                                    user: req.user,
-                                                    n: noticias,
-                                                    pj: pjTotales,
-                                                    us: us2,
-                                                    usT: usuarios_totales
-                                                })
-                                            }
-                                        })
-                                    }
-                                }
-                            })
-                        }
-                    });
-                } else {
-                    res.redirec("/");
-                }
-            }
-        })
-    })
-
-        app.get("/Smoderacion", isLoggedIn, function(req, res){
-        User.findOne({user_id: req.user.user_id}).exec(function(err, us){
-            if(!err){
-                if(us.range >= 5){
-                    User.find({}).sort({$natural:-1}).limit(5).exec(function(err, us2){
-                        if(us2){
-                            var usuarios_totales = 0;
-                            for(var i=0; i < us2.length; i++ ){
-                                 usuarios_totales++;
-
-                            }
-                            Ch.verPJ(function(err, pjs){
-                                if(!err){
-                                    if(pjs){
-                                        var pjTotales = 0;
-                                        for(var i=0; i<pjs.length; i++){
-                                            pjTotales++
-                                        }
-                                        Not.bus5(function(err, noticias){
-                                            if(noticias){
-                                                res.render("Smoderacion", {
-                                                    user: req.user,
-                                                    n: noticias,
-                                                    pj: pjTotales,
-                                                    us: us2,
-                                                    usT: usuarios_totales
-                                                })
-                                            }
-                                        })
-                                    }else {
-                                        var pjTotales = 0;
-                                        Not.bus5(function(err, noticias){
-                                            if(noticias){
-                                                res.render("Smoderacion", {
-                                                    user: req.user,
-                                                    n: noticias,
-                                                    pj: pjTotales,
-                                                    us: us2,
-                                                    usT: usuarios_totales
-                                                })
-                                            }
-                                        })
-                                    }
-                                }
-                            })
-                        }
-                    });
-                } else {
-                    res.redirec("/");
-                }
-            }
-        })
-    })
-
      // process the signup form
     app.post('/registrar', passport.authenticate('local-signup', {
         successRedirect : '/', // redirect to the secure profile section
@@ -239,7 +88,6 @@ module.exports = function(app, passport) {
         failureRedirect : '/conectar', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
-
 };
 
 

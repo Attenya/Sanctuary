@@ -9,12 +9,11 @@ var usuario_schema = new Schema({
 	created_at: {type: Date, default: Date.now},
 	range: {type: Number, default: 1},
 	badges: {type: Number, default: 0},
-	avatar: String,
+	avatar: [],
 	bando: {type: String, default: 'Soldado sin nombre'},
-	characters: String,
+	characters: [],
 	chat: String,
-	sala: String,
-	pais: String
+	sala: String
 });
 
 // methods ======================

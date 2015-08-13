@@ -1,120 +1,234 @@
-
-var chatRoom = null;
-var socket = io.connect();
-var total = 0;
-var perfil = "";
-var tabla = "";
-var pj = new Object();
-
-// Funcion Usuario Privado:
-//		Permite al usuario enviar el mensaje del chat
-//		Diferenciando entre mensaje privado y general.
-//
-
 $(document).ready(function () {
 $("#chat_usuario").submit(function(event){
 	var mensaje_completo = $('#m').val();
-	var bando = usuario.bando.split(" ");
-	var id_bando = bando.join("_");
-	if(mensaje_completo.indexOf('"') != 0){
-		if(mensaje_completo.indexOf("/") == 0){
-			var barra = mensaje_completo.indexOf("/");
-			var mensaje = mensaje_completo.substring(1);
-			socket.emit('msjGeneral1', usuario.user_id, mensaje, id_bando)
-		} else {
-			if(mensaje_completo.length < 1){
-
-			} else {
-				socket.emit('msg', usuario.user_id, id_bando, mensaje_completo);
-				var d = $('.cuerpoChat1');
-				var height = d[0].scrollHeight;
-				d.scrollTop(height);
-			}
-		}
+	if(mensaje_completo.indexOf('"') !== 0){
+		socket.emit('msg', usuario.user_id, usuario.bando, mensaje_completo);
 	} else {
-			var espacio = mensaje_completo.indexOf(" ");
-			var id = mensaje_completo.substring(1, espacio);
-			var mensaje = mensaje_completo.substring(espacio);
-			$("#my_ul").append($('<li class="privado">').html("<span id='perfil2'>"+usuario.user_id+"</span>: "+mensaje));
-			socket.emit('privado', mensaje, id, usuario.user_id);
+		var espacio = mensaje_completo.indexOf(" ");
+		var id = mensaje_completo.substring(1, espacio);
+		var mensaje = mensaje_completo.substring(espacio);
+		$("#my_ul").append($('<li class="privado">').html("<span id='perfil2'>"+usuario.user_id+"</span>: "+mensaje));
+		socket.emit('privado', mensaje, id, usuario.user_id);
+
 	}	
 	$("#m").val("");
 });
 
-// Funcion Usuario Privada:
-//		Permite al usuario colocar lo preciso
-//		para enviar un mensaje privado haciendo click
-//		sobre el usuario de la lista de conectados
 
-$("#ulConectados").on("click", "li", function(event){
-	if(usuario.user_id != null || usuario.user_id != undefined){
-		var id = $(this).text();
-		$("#m").val("\""+id+" ");
+$('#estatico').on("click", "#enviarPJ", function(event){
+var fallo =  false;
+var pj = new Object();
+var total = 1;
+var valor = $(this).attr('value');
+
+	//
+	// Se definen las variables del objeto
+	// que forman las prinicpales caracteristicas
+	// del personaje
+	// Nombre, id, nivel, na, clase y estilo
+
+	pj.charac_id = $("#id_pj").val();
+	pj.nombre = $("#nombre_pj").val();
+	pj.nivel = $("#nivel_pj").val();
+	pj.na = $("#n_a_pj").val();
+	pj.clase = $("#clase_pj").val();
+	pj.estilo = $("#estilo_pj").val();
+
+	//
+	// Se definen las variables del objeto
+	// que forman los atributos principales
+	// del personaje
+	// Pv, bonus pv, cosmos, cp, pva, bonus pva
+
+	pj.atributos = new Object();
+	pj.atributos.pv = $("#pv_pj").val();
+	pj.atributos.bonuspv = $("#bonuspv_pj").val();
+	pj.atributos.cosmos = $("#pc_pj").val();
+	pj.atributos.bonusApc = $("#bonusApc_pj").val();
+	pj.atributos.bonuspc = $("#bonuspc_pj").val();
+	pj.atributos.cp = $("#cp_pj").val();
+	pj.atributos.pva = $("#pva_pj").val();
+	pj.atributos.bonuspva = $("#bonuspva_pj").val();
+
+	//
+	// Se definen las variables del objeto
+	// que forman los sentidos del personaje
+	// Vista, gusto, tacto, oido, olfato, intuicion,
+	// septimo, octavo, omega y decimo.
+
+	pj.sentidos = new Object();
+	pj.sentidos.tacto = $("#tacto_pj").val();
+	pj.sentidos.vista = $("#vista_pj").val();
+	pj.sentidos.olfato = $("#olfato_pj").val();
+	pj.sentidos.oido = $("#oido_pj").val();
+	pj.sentidos.gusto = $("#gusto_pj").val();
+	pj.sentidos.intuicion = $("#intuicion_pj").val();
+	pj.sentidos.septimo = $("#7_pj").val();
+	pj.sentidos.octavo = $("#8_pj").val();
+	pj.sentidos.omega = $("#omega_pj").val();
+	pj.sentidos.decimo = $("#10_pj").val();
+
+//
+// Loop For() que extrae los valores de cada ataque
+// tanto su daño, como su nombre, tipo, especiales,
+// bonus y gastos.
+//
+
+pj.ataque= new Object();
+for(var i=1; i<11; i++){
+		if($("#nm_atk"+i+"_pj").val() == undefined){
+	fallo = true;
+	} else {
+	pj.ataque[i] = new Object();
+	pj.ataque[i].nombre = $("#nm_atk"+i+"_pj").val();
+	pj.ataque[i].tipo = $("#tipo_atk"+i+"_pj").val();
+	pj.ataque[i].especial = $("#especial_atk"+i+"_pj").val();
+	pj.ataque[i].gasto = $("#gasto_atk"+i+"_pj").val();
+	pj.ataque[i].daño = $("#daño_atk"+i+"_pj").val();
+	pj.ataque[i].bonus = $("#bonus_atk"+i+"_pj").val();
+}
+};
+
+//
+// Loop For() que extrae del formulario los datos de 
+// de cada defensa, tanto su dalño como su nombre, tipo,
+// especiales, bonus y gasto. Además avisa de si un dato
+// esta vacio.
+
+pj.defensa= new Object();
+var x = 1;
+for(var i=0; i<10; i++){
+	pj.defensa[x] = new Object();	
+	pj.defensa[x].nombre = $("#nm_def"+x+"_pj").val();
+	pj.defensa[x].tipo = $("#tipo_def"+x+"_pj").val();
+	pj.defensa[x].especial = $("#especial_def"+x+"_pj").val();
+	pj.defensa[x].gasto = $("#gasto_def"+x+"_pj").val();
+	pj.defensa[x].poder = $("#antidaño_def"+x+"_pj").val();
+	pj.defensa[x].bonus = $("#bonus_def"+x+"_pj").val();
+	x++;
+
+};
+
+//
+// Loop For() que extrae del formulario los datos de 
+// de cada habilidad, tanto su nombre, tipo,
+// descripción y clave. Además avisa de si un dato
+// esta vacio.
+
+pj.habilidades= new Object();
+for(var i=1; i<9; i++){
+	pj.habilidades[i] = new Object();	
+	pj.habilidades[i].nombre = $("#nombre_hab"+i+"_pj").val();
+	pj.habilidades[i].tipo = $("#tipo_hab"+i+"_pj").val();
+	pj.habilidades[i].desc = $("#descripcion_hab"+i+"_pj").val();
+	pj.habilidades[i].clave = $("#clave_hab"+i+"_pj").val();
+};
+
+pj.bases = new Object();
+pj.bases.caballero = $("#baseCaballero").val() || 5;
+pj.bases.af = $("#afbc_pj").val();
+pj.bases.df = $("#dfbc_pj").val();
+pj.bases.ac = $("#acbc_pj").val();
+pj.bases.dc = $("#dcbc_pj").val();
+pj.bases.ap = $("#apbc_pj").val();
+pj.bases.dp = $("#dpbc_pj").val();
+pj.bases.baf = $("#afb_pj").val();
+pj.bases.bdf = $("#dfb_pj").val();
+pj.bases.bac = $("#acb_pj").val();
+pj.bases.bdc = $("#dcb_pj").val();
+pj.bases.bap = $("#apb_pj").val();
+pj.bases.bdp = $("#acb_pj").val();
+pj.bases.ba = $("#ba_pj").val();
+
+	if(valor == "actualizar"){
+			$('#perfil , #panel_administracion, #panel_moderacion').remove();
+			socket.emit("actualizarPJ", pj);
+			socket.emit('editar_personaje');
 	};
+	if(valor == "nuevo"){
+		$('#perfil , #panel_administracion, #panel_moderacion').remove();
+		socket.emit('nuevo_pj', pj);
+		socket.emit('editar_personaje');
+	};
+
+console.log(pj.habilidades);
 });
 
-// Funcion Publica:
-//	Permite ver el perfil de un usuario del chat
-//
-//
+$("#estatico").on("click", "#editarPj", function(event){
+$('#perfil , #panel_administracion, #panel_moderacion').remove();
+socket.emit('editar_personaje');
+
+});
+
+$('#estatico').on("click", "#editPj2", function(event){
+	var celdaPadre = $(this).closest("td");
+	var hermanos = celdaPadre.siblings("td");
+	var celdaId = hermanos[0]['innerText'];
+	$('#perfil, #panel_administracion, #panel_moderacion').remove();
+	socket.emit('editarPj', celdaId);
+})
+
+$('#estatico').on("click", "#eliminarPj", function(event){
+	var celdaPadre = $(this).closest("td");
+	var hermanos = celdaPadre.siblings("td");
+	var celdaId = hermanos[0]['innerText'];
+	var filaPadre = celdaPadre.parent("tr")
+	filaPadre.remove();
+	socket.emit('eliminarPj', celdaId);
+})
 
 $("#my_ul").on("click", "li", function(event){
-$('.Vperfil , #panel_administracion, .tabMod, #battle, .notCompleta').remove();
+$('#perfil , #panel_administracion, #panel_moderacion').remove();
 perfil = $(this).children("span").text();
 socket.emit('perfil', perfil);
 });
 
-socket.on('perfil', function(data, template){
-$('.Vperfil, #panel_administracion, .tabMod, .tablon').remove();
-var f1 = new Date(data.created_at);
-var dia = f1.getDate();
-var mes = f1.getMonth()+1;
-var ano = f1.getFullYear();
-var f2 = dia+"/"+mes+"/"+ano;
-var us = new Object();
-us = data;
-us['fecha'] = f2;
-console.log(f2);
-console.log(us.fecha);
-var plantilla = Handlebars.compile(template);
-var html = plantilla(us);
-$('#estatico').append(html);
-$(".fecha_completa").append(fecha);
-
-});
-
-// Funcion Usuario Privada:
-//	Permite veer el perfil personal del usuario
-//
-//
-
-
 $(".dropdown-menu").on("click", ".perfil", function(event){
-$('.Vperfil, #panel_administracion, .tabMod, #battle, .notCompleta').remove();
+$('#perfil, #panel_administracion, #panel_moderacion').remove();
 perfil = usuario.user_id;
 socket.emit('perfil', perfil);
 });
-
-// Funcion Simple:
-//	Desconecta al usuario de la cuenta actual
-//
-//
 
 $(".dropdown-menu").on("click", ".glyphicon-log-out", function(event){
 perfil = usuario.user_id;
 socket.emit('disconnect', perfil);
 });
 
-// Funcion General:
-//		Permite a todo usuario cerrar la ventana que
-//		tiene abierta actualmente.
-//
+$('#estatico').on('click', "#nuevo_personaje", function(event){
+$('#perfil, #panel_administracion, #panel_moderacion').remove();
+socket.emit('nuevo_personaje');
+})
+
+$("#administracion").click(function(event){
+	$('#perfil').remove();
+	$('#perfil').remove();
+	$('#noticias, #menu_batallas, #ranking').hide();
+	socket.emit('administracion');
+})
+
+$("#moderacion").click(function(event){
+	$('#perfil').remove();
+	$('#noticias, #menu_batallas, #ranking').hide();
+	socket.emit('moderacion');
+})
 
 $('#estatico').on('click', ".libre", function(event){
-	$(".Vperfil, #panel_administracion, .tabMod, #battle, .notCompleta, .tabNoticias, .tabBatallas, .tabEventosYTorneos").remove();
-	history.pushState('', 'New Url: '+"Inicio", "/");
-	event.preventDefault();
-	socket.emit("tablon");
+	$("#perfil, #panel_administracion, #panel_moderacion").remove();
+	$("#perfil").remove();
+	$("#noticias, #menu_batallas, #ranking").show();
+})
+
+var chatRoom = null;
+var socket = io.connect();
+var total = 0;
+var perfil = "";
+var tabla = "";
+
+
+
+socket.on('formPjEdit', function(datos){
+	$("#perfil, #panel_administracion, #panel_moderacion").remove();
+	$('#estatico').append(datos);
 })
 
 socket.on("prv", function(data){
@@ -129,350 +243,13 @@ socket.on('conectados', function(data){
 	}else {
 		$('#conectados ul li').remove();
 		$.each(data, function(orden, elemento){
-			var bando = elemento["bando"].split(" ");
-			var id_bando = bando.join("_");
-			$('#conectados ul').append($("<li class='"+id_bando+"'>").text(elemento.user_id));
+			$('#conectados ul').append($("<li class='"+elemento.bando+"'>").text(elemento.user_id));
 		});
 		
 	};
 })
-
-
-//
-//	/*Funciones Socket.IO Destinadas a la Moderación - SuperModeracion - Administración*/
-//
-//
-//
-
-$("#moderacion").click(function(event){
-	$('.Vperfil, #battle, .notCompleta, .tablon').remove();
-	socket.emit('Portal');
-	history.pushState('', 'New Url: '+"Moderación", "/moderacion");
-	event.preventDefault();
-})
-
-$("#Smoderacion").click(function(event){
-	$('.Vperfil, #battle, .notCompleta, .tablon').remove();
-	socket.emit('SPortal');
-	history.pushState('', 'New Url: '+"Moderación", "/Smoderacion");
-	event.preventDefault();
-})
-
-//
-//
-//		/*Apartado Portal*/
-//
-//
-
-$("#moderacion").click(function(event){
-	$('.Vperfil, #battle, .notCompleta, .tablon').remove();
-	socket.emit('Portal');
-	history.pushState('', 'New Url: '+"Moderación", "/moderacion");
-	event.preventDefault();
-})
-//
-//
-//	/*Apartado Menu Moderación - SuperModeración - Administracion*/
-//
-//
-
-
-$('#estatico').on("click", "#mod", function(event){
-	$(this).siblings().removeClass("active");
-	$(this).addClass("active");
-	var menu = $(this).text();
-	socket.emit(menu);
-})
-
-$('#estatico').on("click", "#Sportal", function(event){
-	$(this).siblings().removeClass("active");
-	$(this).addClass("active");
-	var menu = $(this).text();
-	socket.emit("SPortal");
-})
-
-socket.on("portal", function(users, template, pjs, noticias){
-$(".tabMod, .tablon").remove()
-var usuarios_totales = 0;
-for(var i=0; i < users.length; i++ ){
-	usuarios_totales++;
-
-}
-var plantilla = Handlebars.compile(template);
-var html = plantilla(users);
-$("#estatico").append(html);
-$(".EstUsers").append(usuarios_totales);
-$(".EstPjs").append(pjs);
-$("#mod:first").addClass("active");
-var not = "";
-for(var i = 0; i<noticias.length; i++){
-	not += "<div class='col-md-12 col-xs-12'><div class='col-md-2 col-xs-3'>"+noticias[i].fecha+"</div><div class='col-md-10 col-xs-9'>";
-	not += "<a href='Noticias/id/"+noticias[i]['id']+"'>"+noticias[i].titulo+"</a></div></div>";
-}
-
-$(".tabNotSimple").append(not);
-});
-
-socket.on("Sportal", function(users, template, pjs, noticias){
-$(".tabMod, .tablon").remove()
-var usuarios_totales = 0;
-for(var i=0; i < users.length; i++ ){
-	usuarios_totales++;
-
-}
-var plantilla = Handlebars.compile(template);
-var html = plantilla(users);
-$("#estatico").append(html);
-$(".EstUsers").append(usuarios_totales);
-$(".EstPjs").append(pjs);
-$("#Sportal").addClass("active");
-var not = "";
-for(var i = 0; i<noticias.length; i++){
-	not += "<div class='col-md-12 col-xs-12'><div class='col-md-2 col-xs-3'>"+noticias[i].fecha+"</div><div class='col-md-10 col-xs-9'>";
-	not += "<a href='Noticias/id/"+noticias[i]['id']+"'>"+noticias[i].titulo+"</a></div></div>";
-}
-
-$(".tabNotSimple").append(not);
-});
-
-//
-//	/*Apartado - Noticias*/
-//
-//
-//
-
-socket.on("Noticias", function(noticias, template){
-$(".tabPortal, .tabNoticias, .tablon, .tabUsuarios, .tabBatallas, .tabEventosYTorneos").remove();
-var plantilla = Handlebars.compile(template);
-var html = plantilla(noticias);
-$(".tabModFijo").append(html);
-whizzywig()
-});
-
-$("#estatico").on("click", ".leerNoticia", function(event){
-	var divPadre = $(this).closest("div");
-	var hermanos = divPadre.siblings("div");
-	var divId = hermanos[0]['innerText'];
-	socket.emit("buscarNoticia", divId);
-})
-
-
-socket.on("prev", function(noticia, template, user){
-	$(".notCompleta").remove();
-	var plantilla = Handlebars.compile(template, {noEscape: true});
-	var html = plantilla(noticia);
-	$(".bs-example-modal-lg .modal-content").append(html);
-	if(user[0].avatar == null || user[0].avatar == undefined || user[0].avatar == ""){
-		$(".notAutorAvatar").append("<img src='/images/avatar.png' class='img-responsive'>");
-	}else{
-		$(".notAutorAvatar").append(user[0].avatar);
- 		$(".notAutorAvatar img").addClass("img-responsive");
-	}
-})
-
-$("#estatico").on("click", ".borrarNoticia", function(event){
-	var divPadre = $(this).closest("div");
-	var hermanos = divPadre.siblings("div");
-	var divId = hermanos[0]['innerText'];
-	socket.emit("borrarNoticia", divId);
-	socket.emit("Noticias");
-})
-
-$("#estatico").on("click", "#guardar", function(event){
-	var noticia = new Object();
-	noticia['id'] = $("#id").val();
-	noticia.url = $("#url").val() || "";
-	noticia.titulo = $("#titulo").val();
-	syncTextarea()
-	noticia.desc1 = $("#desc1").val();
-	syncTextarea()
-	noticia.desc2 = $("#desc2").val();
-	noticia.temas = new Object ();
-	$('input[name="chk[]"]:checked').each(function() {
-		//$(this).val() es el valor del checkbox correspondiente
-		noticia.temas[$(this).val()] = "Si";
-	});
-	noticia.calificacion = new Object();
-	$('input[name="chk2[]"]:checked').each(function(){
-		noticia.calificacion[$(this).val()] = "Si";
-	});
-	noticia.autor = usuario.user_id;
-	noticia.imagen = $("#imagen").val();
-	socket.emit("noticiaNueva", noticia);
-	socket.emit("Noticias");
-
-})
-
-$("#estatico").on("click", "#previsualizar", function(event){
-$(".descCompleta, .tituloPrev, .autorPrev, .fechaPrev, .temasPrev, .notAutorAvatar").empty();
- $(".tituloPrev").append($("#titulo").val());
- $(".autorPrev").append(usuario.user_id);
- $(".imagenPrev img").addClass("img-responsive");
- if($("#imagen").val() != null || $("#imagen").val() != undefined || $("#imagen").val() != ""){
- 	$(".imagenPrev").append("<img src='"+$("#imagen").val()+"' class='img-responsive'>");
- }
- if(usuario.avatar == null || usuario.avatar == undefined || usuario.avatar == ""){
- 	 	console.log("No tiene avatar")
- 	$(".notAutorAvatar").append("<img src='/images/avatar.png' class='img-responsive'>");
- } else {
- 	$(".notAutorAvatar").append(usuario.avatar);
- 	$(".notAutorAvatar img").addClass("img-responsive");
- 	console.log("Tiene avatar");
- }
- syncTextarea()
- $(".descCompleta").append($("#desc2").val());
- var fecha = new Date();
- var dia = fecha.getDate();
- var mes = fecha.getMonth();
- var ano = fecha.getFullYear();
- var f2 = dia+"/"+mes+"/"+ano;
- $(".fechaPrev").append(f2);
- $('input[name="chk[]"]:checked').each(function() {
-		//$(this).val() es el valor del checkbox correspondiente
-		$(".temasPrev").append($(this).val().capitalize()+"</br>");
-	});
-})
-
-String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-}
-
-
-//
-//
-// /* Apartado - Usuarios*/
-//
-//
-socket.on("listaUsuarios", function(users, template){
-	$(".tabPortal, .tabNoticias, .tablon, .tabNoticias, .tabUsuarios, .tabBatallas, .tabEventosYTorneos").remove();
-	var plantilla = Handlebars.compile(template);
-	var html = plantilla(users);
-	$(".tabModFijo").append(html);
-
-})
-
-$("#estatico").on("click", "#buscarUsuario", function(event){
-		var id_usuario = $("#usuario").val();
-		socket.emit("buscarUsuario", id_usuario, "busqueda");
-})
-
-socket.on("usuarioEncontrado", function(user, template, funcion){
-
-	Handlebars.registerHelper("chkb", function(objeto, valor, options){
-		if(objeto == valor){
-			return options.fn(this);
-		} else {
-			return options.inverse(this);
-		}
-	});
-
-	$(".tabUsForm").empty();
-
-	if(funcion == "busqueda"){
-		$(".tabUsList2").empty();
-		var html = '<div class="col-md-12 col-xs-12 tabUsUsuario"><div class="col-md-1 col-xs-1">ID:</div><div class="col-md-8 col-xs-5">'+user[0].user_id+'</div><div class="col-md-1 col-xs-2">';
-		html +='<button type="button" id="editarUsuario" class="btn btn-xs btn-info">Editar</button></div><div class="col-md-1 col-xs-2"><button type="button" id="borrarUsuario" class="btn btn-xs btn-danger">Borrar</button>';
-		html +='</div><div class="col-md-1 col-xs-2"><button type="button" id="banearUsuario" class="btn btn-xs btn-warning">Buscar</button></div></div>';
-		$(".tabUsList2").append(html)
-	} else {
-		var plantilla = Handlebars.compile(template);
-		var html = plantilla(user);
-		$(".tabUsForm").append(html);
-		socket.emit("userPJ", user[0].user_id)
-	}
-	
-});
-
-socket.on("userPJ", function(personajes, cantidad){
-	if(cantidad >= 1){
-		console.log("Hay pjs en la base de datos")
-		var divH = '<div class="col-md-4 col-xs-12"><div class="col-md-10 col-xs-10"><select class="form-control">';
-		divH += '<option>Una opcion cualquiera</option></select></div><div class="col-md-1 col-xs-2 col-md-offset-1">';
-		divH += '<button type="button" class="btn btn-xs btn-default" >+</button></div></div>';
-	} else {
-		$(".pjsUsuario").append("<div class='avisoCentrado'>No hay personajes en la Base de Datos. ¡Avisa al Administrador para que haga su trabajo!</div>");
-	}
-})
-
-$("#estatico").on("click", "#editarUsuario", function(event){
-		var divPadre = $(this).closest("div");
-		var hermanos = divPadre.siblings("div");
-		var divId = hermanos[1]['innerText'];
-		socket.emit("buscarUsuario", divId, "edicion");
-})
-
-$("#estatico").on("click", "#guardarEdit", function(event){
-	var us = new Object();
-	us['user_id'] = $("#user_id").val();
-	us.avatar = $("#avatar").val();
-	us.mail = $("#mail").val();
-	us.bando = $("#bando option:selected").val();
-	us.range = $("#range option:selected").val();
-	us.badges = $("#badges").val();
-	socket.emit("editarUsuario", us);
-});
-
-$("#estatico").on("click", "#borrarUsuario", function(event){
-	var divPadre = $(this).closest("div");
-		var hermanos = divPadre.siblings("div");
-		var divId = hermanos[1]['innerText'];
-		socket.emit("borrarUsuario", divId);
-})
-
-socket.on("err", function(tipo){
-	if(tipo == "borrarStaff"){
-		$(".textoFlotanteTxt").empty();
-		$(".textoFlotanteTxt").append("No se puede borrar este usuario por ser miembro del Staff. Sólo el administrador tiene privilegios para ello");
-		$(".textoFlotante").show();
-
-	}
-});
-
-$(".error").on("click", function(event){
-	$(".textoFlotante").hide();
-})
-
-
-
-//
-//
-//	/* Apartado - Batallas */
-//
-//
-
-socket.on("batMod", function(bat, template){
-		$(".tabPortal, .tabNoticias, .tablon, .tabNoticias, .tabUsuarios, .tabBatallas, .tabEventosYTorneos").remove();
-	var plantilla = Handlebars.compile(template);
-	var html = plantilla(bat);
-	$(".tabModFijo").append(html);
-
-})
-
-
-//
-//
-//	/* Apartado - Eventos y Torneos */
-//
-//
-
-socket.on("Eventos y Torneos", function(eventos, template){
-	$(".tabPortal, .tabNoticias, .tablon, .tabNoticias, .tabUsuarios, .tabBatallas, .tabEventosYTorneos").remove();
-	var plantilla = Handlebars.compile(template);
-	var html = plantilla(eventos);
-	$(".tabModFijo").append(html);
-	whizzywig()
-})
-
-
-
-
-
-
-
-
-
 socket.on('listaPj', function(charac){
-	$('.Vperfil, #panel_moderacion, #panel_administracion').remove();
+	$('#perfil, #panel_moderacion, #panel_administracion').remove();
 	total = 0;
 	if(charac == null){
 		tabla = '<div id="perfil"><button type="button" class="libre">Cerrar</button>'
@@ -515,7 +292,17 @@ socket.on('listaPj', function(charac){
 	$('#estatico').append(tabla);
 });
 
+socket.on('recibir_nuevo_personaje', function(data){
+		$('#estatico').append(data);
+})
 
+socket.on('recibir_administracion', function(data){
+$('#estatico').append(data);
+})
+
+socket.on('recibir_moderacion', function(data){
+$('#estatico').append(data);
+})
 
 
 socket.on("connect", function(){
@@ -532,8 +319,7 @@ socket.emit('conectar', datos, bando);
 
 socket.on('recargar', function(msg){
 	$.each(msg, function(indice, mensaje){
-
- $('#my_ul').append($('<li>').html("<span id='perfil2' class='"+mensaje.bando+"''>"+mensaje.emisor+"</span>: "+mensaje.mensaje));
+ $('#my_ul').append($('<li>').html("<span id='perfil2'>"+mensaje.emisor+"</span>: "+mensaje.mensaje));
 	});
 
 });
@@ -541,50 +327,31 @@ socket.on('recargar', function(msg){
 
  socket.on('chat', function(msg){
  $('#my_ul').append($('<li>').html(msg));
- var d = $('.cuerpoChat1');
-var height = d[0].scrollHeight;
-d.scrollTop(height);
+var d = $('#mensajes_chat');
+d.scrollTop(d.prop("scrollHeight"));
+
  })
 
+ socket.on("dsc", function(msg){
+ 	 $('#mensajes_chat').append($('<li>').text(msg));
+ })
+
+ socket.on("unir", function(msg){
+ 	$('#mensajes_sistema').append($('<li>').text(msg));
+ })
+
+socket.on('perfil', function(data){
+$('#noticias, #menu_batallas, #ranking').hide();
+$(' #perfil, #panel_administracion, #panel_moderacion').remove();
+$('#estatico').append(data);
+var personaje = "<div class='nombre'>"+DataCharacters[data][nombre]+"</div>"
+$('.personajes').append(personaje);
+});
 
 socket.on('errorPrivado', function(data){
 	var error = "El usuario "+data+" no se encuentra conectado";
 	$('#my_ul').append($('<li class="alerta">').text(error));
 })
-
-
-
-
-
-socket.on("Bien", function(evento){
-	if(evento == "Noticias"){
-			socket.emit("Noticias");
-	}
-
-})
-
-
-
-
-socket.on("tablonCompleto", function(noticias, template){
-	Handlebars.registerHelper('if2', function(a, options){
-	if(a== null || a == undefined || a == ""){
-		 return options.fn(this);
-	} else {
-		 return options.inverse(this);
-	}
-});
-	console.log(template);
-	var plantilla = Handlebars.compile(template);
-	var html = plantilla(noticias);
-	$("#estatico").append(html);
-})
-
-socket.on("msjGeneral1", function(mensaje){
-	$("#msjGenerales").append(mensaje);
-})
-
-
 
 var unirseRoom = function(room){
 $('#mensajes_sistema').append($("<li>").text("Te has unido al chat "+room));
@@ -608,12 +375,4 @@ $("#botones2").append($("<button onclick='this.form.envio()' id='enviar'> Enviar
 chatRoom = null;
  }
 });
-
-$("#estatico #probando a").on("click", function(e){
-	var href = $(this).attr("href");
-	history.pushState('', 'New Url: '+href, href);
-	e.preventDefault();
-
-})
-
 

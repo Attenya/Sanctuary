@@ -13,7 +13,6 @@ var chat_schema = new Schema({
 	tipo: String,
 	emisor: String,
 	mensaje: String,
-	bando: String,
 	fecha: {type: Date, default: Date.now}
 });
 
@@ -53,13 +52,12 @@ var fecha = function () {
 // en la que el usuario se encuentra en ese
 // preciso momento
 //
-var mensajeRoom = function(usuario, bando, msj, callback){
+var mensajeRoom = function(usuario, msj, callback){
 	var msg = new gM();
 	msg.tipo = "general";
 	msg.emisor = usuario;
 	msg.mensaje = msj;
 	msg.fecha = Date.now();
-	msg.bando = bando;
 	msg.save({}, callback);
 };
 
@@ -157,16 +155,6 @@ var usuariosConectados = function(callback){
 	usuarios.find({chat: "conectado"}).sort([['user_id', 'descending']]).exec(callback);
 };
 
-// Funcion que extrae de la base de datos
-// el usuario conectado y comprueba a que 
-// room se encuentra conectado.
-//
-
-var usuarioRoom = function(user_id, callback){
-	usuarios.findOne({user_id: user_id}).exec(callback);
-}
-
-
 
 module.exports.general = mensajeRoom;
 module.exports.privado = mensajePrivado;
@@ -176,4 +164,3 @@ module.exports.salaNueva = cambiarRoom;
 module.exports.recargar = extraerGM;
 module.exports.conectados = usuariosConectados;
 module.exports.fecha  = fecha; 
-module.exports.userRoom = usuarioRoom;
