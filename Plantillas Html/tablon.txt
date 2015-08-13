@@ -26,11 +26,7 @@
             <div class="col-md-3 col-xs-3 center">{{fecha}}</div>
             <div class="col-md-6 col-xs-6">{{titulo}}</div>
             <div class="col-md-3 col-xs-3">
-              {{#if2 url}}
-                <a href="/noticias/{{url}}">Leer Más</a></div>
-               {{else}}
                 <a href="/noticias/id/{{id}}">Leer Más</a></div>
-              {{/if2 }}
           </div>
         {{/each}}
     </div>
