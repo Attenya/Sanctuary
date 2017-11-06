@@ -95,7 +95,7 @@ app.use(function(err, req, res, next) {
 });
 */
 
-
-http.listen(process.env.PORT || 3000, function(){
+int port = process.env.PORT || 3000;
+http.listen(port, function(){
     console.log('El servidor funciona en el puerto 3000');
 });
