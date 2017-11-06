@@ -20,9 +20,7 @@ var chat = require('./controllers/socketsControllers');
 var config = require('./config.js')
 
 
-var uristring = 
-  process.env.MONGOHQ_URL || 
-  'mongodb://Attenya:636491Ab@ds149905.mlab.com:49905/heroku_8dsmqq4v';    
+var uristring =  'mongodb://Attenya:636491Ab@ds149905.mlab.com:49905/heroku_8dsmqq4v';    
 
 /*Configuración de la Base de Datos*/
 mongoose.connect(uristring);
